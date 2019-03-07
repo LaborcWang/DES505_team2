@@ -1,0 +1,20 @@
+newmtl Stone
+Kd 0.6509434 0.623309 0.623309
+illum 2
+
+newmtl Water
+Kd 0.2007832 0.6495383 0.9056604
+illum 2
+
+newmtl Grass
+Kd 0.118147 0.5566038 0.1772999
+illum 2
+
+newmtl Black Metal
+Kd 0 0 0
+illum 2
+
+newmtl Rock
+Kd 0.6603774 0.4463977 0.07787468
+illum 2
+

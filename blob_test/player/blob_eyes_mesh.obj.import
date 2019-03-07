@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/blob_eyes_mesh.obj-50cdd0d71b2f0cc2e2f03d346894ade8.mesh"
+
+[deps]
+
+files=[ "res://.import/blob_eyes_mesh.obj-50cdd0d71b2f0cc2e2f03d346894ade8.mesh" ]
+
+source_file="res://player/blob_eyes_mesh.obj"
+dest_files=[ "res://.import/blob_eyes_mesh.obj-50cdd0d71b2f0cc2e2f03d346894ade8.mesh", "res://.import/blob_eyes_mesh.obj-50cdd0d71b2f0cc2e2f03d346894ade8.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true
