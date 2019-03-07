@@ -69,5 +69,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36866, -0.842336, -2.16857 )
 [node name="Camera" type="Camera" parent="Spatial"]
 transform = Transform( 0.999192, -0.0215339, 0.0339305, 0.0198595, 0.998604, 0.0489352, -0.0349369, -0.0482218, 0.998226, -1.02578, 2.04781, 6.57726 )
 
-[node name="Spatial" type="Spatial" parent="Spatial"]
-
