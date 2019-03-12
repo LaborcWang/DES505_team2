@@ -5,17 +5,14 @@
 [ext_resource path="res://level/rockpillarexportcolour.obj" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFont" id=1]
-
 size = 32
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-
 size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
-
 size = 24
 font_data = ExtResource( 2 )
 
