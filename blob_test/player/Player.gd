@@ -18,27 +18,54 @@ var is_grounded = false
 var jump_started = false
 var camera_lookat : Vector3
 var camera_x_rot = 0.00
-
+var audio_Jumping
+var audio_Squeezing
+var audio_Moving
+var audio_Landing
+var JOYPAD_SENSITIVITY = 2
+const JOYPAD_DEADZONE = 0.15
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	camera_lookat = get_core_frame_position()
+	audio_Jumping = $Jump
+	audio_Squeezing = $Squeeze
+	audio_Landing = $Land
+	audio_Moving = $Move
+	
+	audio_Jumping.stop()
+	audio_Squeezing.stop()
+	audio_Moving.stop()
+	audio_Landing.stop()
 	#pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 func _input(event):
 	if event is InputEventMouseMotion:
-		$camera_base.rotate_y( event.relative.x * CAMERA_ROTATION_SPEED )
-		$camera_base.orthonormalize() # after relative transforms, camera needs to be renormalized
-		camera_x_rot = clamp(camera_x_rot + event.relative.y * CAMERA_ROTATION_SPEED,deg2rad(CAMERA_X_ROT_MIN), deg2rad(CAMERA_X_ROT_MAX) )
-		$camera_base/camera_rot.rotation.x =  camera_x_rot
+		camera_roate(event.relative.x,event.relative.y)
+
+func camera_roate(x, y):
+	$camera_base.rotate_y( -x * CAMERA_ROTATION_SPEED )
+	$camera_base.orthonormalize() # after relative transforms, camera needs to be renormalized
+	camera_x_rot = clamp(camera_x_rot + y * CAMERA_ROTATION_SPEED,deg2rad(CAMERA_X_ROT_MIN), deg2rad(CAMERA_X_ROT_MAX) )
+	$camera_base/camera_rot.rotation.x =  camera_x_rot
+
+func joypad_input(delta):
+	var joypad_vec = Vector2()
+	if Input.get_connected_joypads().size()>0:
+		if OS.get_name() == "Windows":
+			joypad_vec = Vector2(Input.get_joy_axis(0,2), Input.get_joy_axis(0,3))
+		if joypad_vec.length() < JOYPAD_DEADZONE:
+			joypad_vec = Vector2(0,0)
+		else:
+			joypad_vec = joypad_vec.normalized() * ((joypad_vec.length() - JOYPAD_DEADZONE) / (1 - JOYPAD_DEADZONE))
+			camera_roate(joypad_vec.x * JOYPAD_SENSITIVITY,joypad_vec.y * JOYPAD_SENSITIVITY)
+
 
 func _physics_process(delta):
 	# called before the simulation is run
+	
+	joypad_input(delta)
 	
 	# get the movement input
 	var movement_input = Vector2()
@@ -59,6 +86,7 @@ func _physics_process(delta):
 
 	if is_grounded && Input.is_action_just_pressed("jump"):
 		jump_started = true
+		audio_Jumping.play()
 	else:
 		jump_started = false
 	

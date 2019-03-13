@@ -6,3 +6,4 @@ export_presets.cfg
 
 # Mono-specific ignores
 .mono/
+blob_test/player/Player_Collect.gd
