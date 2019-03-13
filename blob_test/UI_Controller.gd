@@ -24,9 +24,9 @@ func _ready():
 	map_show = false
 	map_show_time = 0
 	map_close_time = 0
-	$Pause/Panel/Resume.connect("pressed", self, "resume")
-	$Pause/Panel/Quit.connect("pressed", self, "quit")
-	$Pause/Panel/Map.connect("pressed", self, "map")
+	$Pause/Background/Resume.connect("pressed", self, "resume")
+	$Pause/Background/Quit.connect("pressed", self, "quit")
+	$Pause/Background/Map.connect("pressed", self, "map")
 	$Pause/Map/Map_Close.connect("pressed", self, "map_close")
 	$Map2/Map2_Close.connect("pressed", self, "map2_close")
 	global = get_node("/root/Globals")
