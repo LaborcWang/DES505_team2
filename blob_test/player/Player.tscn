@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/blob_collision_mesh.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://player/blob_body_mesh.obj" type="ArrayMesh" id=3]
 [ext_resource path="res://player/blob_eyes_mesh.obj" type="ArrayMesh" id=4]
 [ext_resource path="res://player/Player_Collect.gd" type="Script" id=5]
+[ext_resource path="res://Coin/coin2.wav" type="AudioStream" id=6]
 
 [sub_resource type="ParticleBodyModel" id=1]
 
@@ -249,4 +250,16 @@ text = "Minor Collectibles:
 0"
 align = 1
 valign = 1
+
+[node name="Jump" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Squeeze" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Land" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+
+[node name="Move" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
 

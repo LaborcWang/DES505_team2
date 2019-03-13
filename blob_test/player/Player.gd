@@ -18,6 +18,10 @@ var is_grounded = false
 var jump_started = false
 var camera_lookat : Vector3
 var camera_x_rot = 0.00
+var audio_Jumping
+var audio_Squeezing
+var audio_Moving
+var audio_Landing
 
 
 
@@ -25,6 +29,15 @@ var camera_x_rot = 0.00
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	camera_lookat = get_core_frame_position()
+	audio_Jumping = $Jump
+	audio_Squeezing = $Squeeze
+	audio_Landing = $Land
+	audio_Moving = $Move
+	
+	audio_Jumping.stop()
+	audio_Squeezing.stop()
+	audio_Moving.stop()
+	audio_Landing.stop()
 	#pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +45,7 @@ func _ready():
 #	pass
 func _input(event):
 	if event is InputEventMouseMotion:
-		$camera_base.rotate_y( event.relative.x * CAMERA_ROTATION_SPEED )
+		$camera_base.rotate_y( -event.relative.x * CAMERA_ROTATION_SPEED )
 		$camera_base.orthonormalize() # after relative transforms, camera needs to be renormalized
 		camera_x_rot = clamp(camera_x_rot + event.relative.y * CAMERA_ROTATION_SPEED,deg2rad(CAMERA_X_ROT_MIN), deg2rad(CAMERA_X_ROT_MAX) )
 		$camera_base/camera_rot.rotation.x =  camera_x_rot
@@ -59,6 +72,7 @@ func _physics_process(delta):
 
 	if is_grounded && Input.is_action_just_pressed("jump"):
 		jump_started = true
+		audio_Jumping.play()
 	else:
 		jump_started = false
 	
