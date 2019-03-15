@@ -59,7 +59,7 @@ func joypad_input(delta):
 			joypad_vec = Vector2(0,0)
 		else:
 			joypad_vec = joypad_vec.normalized() * ((joypad_vec.length() - JOYPAD_DEADZONE) / (1 - JOYPAD_DEADZONE))
-			camera_roate(joypad_vec.x * JOYPAD_SENSITIVITY,joypad_vec.y * JOYPAD_SENSITIVITY)
+			camera_roate(joypad_vec.x * JOYPAD_SENSITIVITY,-joypad_vec.y * JOYPAD_SENSITIVITY)
 
 
 func _physics_process(delta):
