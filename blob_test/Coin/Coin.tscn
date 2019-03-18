@@ -5,9 +5,7 @@
 
 [sub_resource type="CylinderMesh" id=1]
 
-
 [sub_resource type="CylinderShape" id=2]
-
 
 [node name="Coin" type="Spatial"]
 script = ExtResource( 1 )
