@@ -28,7 +28,7 @@ func _physics_process(delta):
 
 func add_score(value):
 	$HUD/coin_anim.visible = true
-	get_node("../AnimationPlayer").play("coin_animation")
+	get_node("../../AnimationPlayer").play("coin_animation")
 	addscore = value
 	#minor_collectibles += value
 
