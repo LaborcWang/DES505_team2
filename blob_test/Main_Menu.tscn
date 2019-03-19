@@ -23,7 +23,6 @@ script = ExtResource( 1 )
 main_scene = "res://Main.tscn"
 
 [node name="Main_Page" type="Panel" parent="."]
-editor/display_folded = true
 margin_left = 345.0
 margin_top = 34.0
 margin_right = 719.0
