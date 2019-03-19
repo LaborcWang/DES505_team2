@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://UI_Controller.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Coin/Coin.tscn" type="PackedScene" id=15]
 [ext_resource path="res://stamp/Stamp_Station.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Spawn_Points.gd" type="Script" id=17]
+[ext_resource path="res://level/Start_Level_Blockout.obj" type="PackedScene" id=18]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
@@ -64,17 +65,21 @@ outline_size = 4
 outline_color = Color( 0.905882, 0.0784314, 0.156863, 1 )
 font_data = ExtResource( 6 )
 
-[sub_resource type="PhysicsMaterial" id=13]
+[sub_resource type="PhysicsMaterial" id=12]
 
-[sub_resource type="BoxShape" id=14]
+[sub_resource type="BoxShape" id=13]
 
-[sub_resource type="CubeMesh" id=12]
+[sub_resource type="CubeMesh" id=14]
+
+[sub_resource type="Environment" id=15]
+ssao_enabled = true
 
 [node name="Main" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 pause_mode = 1
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08862, 0 )
+transform = Transform( -0.692947, 0, -0.720989, 0, 1, 0, 0.720989, 0, -0.692947, 145.615, -13.8427, 52.1151 )
+group_0/default_cluster_stiffness = -1.0
 
 [node name="UI_Controller" type="Node" parent="."]
 pause_mode = 2
@@ -267,14 +272,20 @@ transform = Transform( 0.38, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="Wall"]
 transform = Transform( 0.999713, 0.0630426, 0, -0.00910335, 0.999713, 0, 0, 0, 1, 7.42191, 2.00211, 1.19339 )
-physics_material_override = SubResource( 13 )
+physics_material_override = SubResource( 12 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Wall/StaticBody"]
 transform = Transform( 1, -1.49012e-08, 0, -9.31323e-10, 1, 0, 0, 0, 1, -0.0120802, 0.191565, 0 )
-shape = SubResource( 14 )
+shape = SubResource( 13 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Wall/StaticBody"]
 transform = Transform( 1, -2.23517e-08, 0, -9.31323e-10, 1, 0, 0, 0, 1, -0.0120449, 0.191018, 0 )
-mesh = SubResource( 12 )
+mesh = SubResource( 14 )
 material/0 = null
+
+[node name="Scene Root" parent="." instance=ExtResource( 18 )]
+transform = Transform( 0.999937, 0, -0.0112598, 0, 1, 0, 0.0112598, 0, 0.999937, 136.233, -14.9631, 13.8543 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 15 )
 
