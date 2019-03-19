@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Star_Collectable.obj-d4cbec96d1944883a1f3d69efbee8225.mesh"
+
+[deps]
+
+files=[ "res://.import/Star_Collectable.obj-d4cbec96d1944883a1f3d69efbee8225.mesh" ]
+
+source_file="res://Star/Star_Collectable.obj"
+dest_files=[ "res://.import/Star_Collectable.obj-d4cbec96d1944883a1f3d69efbee8225.mesh", "res://.import/Star_Collectable.obj-d4cbec96d1944883a1f3d69efbee8225.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

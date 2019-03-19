@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Start_Level_Blockout.obj-50380255c58d3f2836972f8405849620.mesh"
+
+[deps]
+
+files=[ "res://.import/Start_Level_Blockout.obj-50380255c58d3f2836972f8405849620.mesh" ]
+
+source_file="res://level/Start_Level_Blockout.obj"
+dest_files=[ "res://.import/Start_Level_Blockout.obj-50380255c58d3f2836972f8405849620.mesh", "res://.import/Start_Level_Blockout.obj-50380255c58d3f2836972f8405849620.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

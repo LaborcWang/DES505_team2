@@ -3,7 +3,7 @@ extends Spatial
 const RESPAWN_TIME = 3
 var respawn_timer = 0
 var coin_value = 1
-var audio_coin = preload("res://Coin/coin2.wav")
+var audio_coin = preload("res://Star/coin2.wav")
 var audio_node = null
 var rs # rotate speed
 
@@ -15,12 +15,12 @@ func _ready():
 	audio_node.stop()
 	show_model(true)
 	rs = 0.02
-	globals = get_node("/root/Globals")
-	global_transform.origin = globals.get_respawn_position()
+	#globals = get_node("/root/Globals")
+	#global_transform.origin = globals.get_respawn_position()
 
 func _physics_process(delta):
 	rotate_y(rs)
-	process_respawn(delta)
+	#process_respawn(delta)
 
 func process_respawn(delta):
 	if respawn_timer > 0:

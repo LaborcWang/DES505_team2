@@ -2,7 +2,7 @@ extends Area
 
 var minor_collectibles = 0
 var UI_status_label
-var coin_label
+var collectables_label
 var timer
 var addscore
 #enum stamp_type {blue = 0, green = 0, yellow = 0, red = 0}
@@ -11,7 +11,7 @@ var global
 func _ready():
 	minor_collectibles = 0
 	UI_status_label = $HUD/Panel/Label
-	coin_label = $HUD/Collectables/Label
+	collectables_label = $HUD/Collectables/Label
 	global = get_node("/root/Globals")
 	$HUD/coin_anim.visible = false
 	timer = 0
@@ -34,7 +34,7 @@ func add_score(value):
 
 func process_UI(delta):
 	#UI_status_label.text = "Minor Collectibles:\n" + str(minor_collectibles)
-	coin_label.text = str(minor_collectibles)
+	collectables_label.text = str(minor_collectibles)
 
 func collect_stamp(stamp_station_type):
 	global.stamp_type[stamp_station_type] = 1
