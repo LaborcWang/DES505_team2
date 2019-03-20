@@ -1,5 +1,6 @@
 extends Area
 
+
 var trigger_off_material : SpatialMaterial
 var trigger_on_material : SpatialMaterial
 var trigger_mesh : MeshInstance

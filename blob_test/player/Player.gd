@@ -12,8 +12,8 @@ const CAMERA_INTERPOLATE_SPEED = 10
 const GROUND_RAY_LENGTH = 0.6
 const JUMP_SPEED = 15
 const CAMERA_ROTATION_SPEED = 0.01
-const CAMERA_X_ROT_MIN = -20
-const CAMERA_X_ROT_MAX = 45
+var CAMERA_X_ROT_MIN = -60
+var CAMERA_X_ROT_MAX = 30
 var is_grounded = false
 var jump_started = false
 var camera_lookat : Vector3
@@ -140,3 +140,14 @@ func rotatePlayerToCamera(delta):
 		# interpolate current rotation with desired one
 		set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
 		
+
+
+func _on_Area_entry():
+	print("enrty")
+	CAMERA_X_ROT_MAX = CAMERA_X_ROT_MIN
+	pass # Replace with function body.
+
+
+func _on_Area_exit():
+	CAMERA_X_ROT_MAX = 30
+	pass # Replace with function body.

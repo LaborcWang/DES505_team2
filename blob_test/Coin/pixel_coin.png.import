@@ -3,6 +3,9 @@
 importer="texture"
 type="StreamTexture"
 path="res://.import/pixel_coin.png-d70338644aec311c9d0b114cd8c459a3.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
