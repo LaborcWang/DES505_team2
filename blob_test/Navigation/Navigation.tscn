@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://player/Navigation.gd" type="Script" id=2]
+
+[sub_resource type="NavigationMesh" id=1]
+vertices = PoolVector3Array( 4.1, 0.9, 9.5, 4.1, 0.9, 8.3, 2.6, 0.9, 8, -2.8, 0.9, 9.5, 5.6, 0.9, 4.7, 5.9, 0.9, 7.4, 9.5, 0.9, 7.4, 9.5, 0.9, -1, 9.5, 0.9, -1, 9.5, 0.9, -9.4, -0.0999994, 0.9, -9.4, -0.0999994, 0.9, -9.4, -9.4, 0.9, -9.4, -9.4, 0.9, -0.0999994, -2.8, 0.9, 9.5, 2.9, 0.9, 4.7, 9.5, 0.9, -1, -2.8, 0.9, 9.5, 2.6, 0.9, 8, 2.9, 0.9, 4.7, 2.9, 0.9, 4.7, 5.6, 0.9, 4.7, 9.5, 0.9, -1, -9.4, 0.9, -0.0999994, -9.4, 0.9, 9.5, -2.8, 0.9, 9.5, 5.6, 0.9, 8.3, 4.1, 0.9, 8.3, 4.1, 0.9, 9.5, 9.5, 0.9, 7.4, 5.9, 0.9, 7.4, 5.6, 0.9, 8.3, 9.5, 0.9, 9.5, 9.5, 0.9, 7.4, 5.6, 0.9, 8.3, 4.1, 0.9, 9.5 )
+polygons = [ PoolIntArray( 3, 0, 2 ), PoolIntArray( 0, 1, 2 ), PoolIntArray( 7, 4, 6 ), PoolIntArray( 4, 5, 6 ), PoolIntArray( 10, 8, 9 ), PoolIntArray( 16, 11, 15 ), PoolIntArray( 11, 14, 15 ), PoolIntArray( 11, 13, 14 ), PoolIntArray( 11, 12, 13 ), PoolIntArray( 19, 17, 18 ), PoolIntArray( 22, 20, 21 ), PoolIntArray( 25, 23, 24 ), PoolIntArray( 28, 26, 27 ), PoolIntArray( 31, 29, 30 ), PoolIntArray( 35, 32, 34 ), PoolIntArray( 32, 33, 34 ) ]
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 20, 1, 20 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -5, 0.5, 1, 5, 0.5, -1, 5, 0.5, 1, -5, 0.5, -1, -5, -0.5, 1, 5, -0.5, -1, 5, -0.5, 1, -5, -0.5, -1, 5, 0.5, 1, -5, 0.5, -1, 5, 0.5, -1, -5, 0.5, 1, 5, -0.5, 1, -5, -0.5, -1, 5, -0.5, -1, -5, -0.5, 1, 5, 0.5, 1, -5, -0.5, 1, -5, 0.5, 1, 5, -0.5, 1, 5, 0.5, -1, -5, -0.5, -1, -5, 0.5, -1, 5, -0.5, -1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 5.00562, 0.510136, 1 )
+
+[sub_resource type="CubeMesh" id=5]
+
+[sub_resource type="BoxShape" id=6]
+
+[sub_resource type="BoxShape" id=7]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Target" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7.11591, 0.761896, 5.27896 )
+
+[node name="Navigation" type="Navigation" parent="Target"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45293, -0.761896, -5.27896 )
+
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Target/Navigation"]
+navmesh = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Target/Navigation/NavigationMeshInstance"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="StaticBody" type="StaticBody" parent="Target/Navigation/NavigationMeshInstance/MeshInstance"]
+
+[node name="CollisionShape" type="CollisionShape" parent="Target/Navigation/NavigationMeshInstance/MeshInstance/StaticBody"]
+shape = SubResource( 3 )
+
+[node name="ParticlePrimitiveBody" type="ParticlePrimitiveBody" parent="Target/Navigation/NavigationMeshInstance/MeshInstance/StaticBody/CollisionShape"]
+shape = SubResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Target/Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26802, 1.35514, 6.45048 )
+mesh = SubResource( 5 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="Target/Navigation/NavigationMeshInstance/MeshInstance2"]
+shape = SubResource( 6 )
+
+[node name="ParticlePrimitiveBody" type="ParticlePrimitiveBody" parent="Target/Navigation/NavigationMeshInstance/MeshInstance2/CollisionShape"]
+shape = SubResource( 7 )
+
+[node name="Player" parent="Target/Navigation" instance=ExtResource( 1 )]
+transform = Transform( 1, -4.65661e-10, -9.31323e-10, 0, 1, 2.98023e-08, 0, 2.98023e-08, 1, -1.66627, 0.563008, 0 )
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.771429, 0.636315, 0, -0.636315, 0.771429, 0, 7.57073, 13.6632 )
+current = true
+fov = 73.125
+

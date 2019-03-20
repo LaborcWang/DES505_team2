@@ -6,14 +6,27 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
+<<<<<<< HEAD
+use_mipmaps = false
+=======
+>>>>>>> 7243c488e43e86f7829b7c254735e7c31cb3a17b
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 24
+<<<<<<< HEAD
+use_mipmaps = false
+=======
+>>>>>>> 7243c488e43e86f7829b7c254735e7c31cb3a17b
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
+<<<<<<< HEAD
+use_mipmaps = false
+use_filter = false
+=======
+>>>>>>> 7243c488e43e86f7829b7c254735e7c31cb3a17b
 font_data = ExtResource( 2 )
 
 [node name="Main_Menu" type="Control"]
