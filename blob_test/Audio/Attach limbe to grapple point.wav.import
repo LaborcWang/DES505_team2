@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Attach limbe to grapple point.wav-0a58cbdf1999ba0e97acc0251eaa141a.sample"
+
+[deps]
+
+source_file="res://Audio/Attach limbe to grapple point.wav"
+dest_files=[ "res://.import/Attach limbe to grapple point.wav-0a58cbdf1999ba0e97acc0251eaa141a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -12,6 +12,11 @@ var global_listener_green = 0
 var global_listener_yellow = 0
 var global_listener_red = 0
 
+#############Player_Collect
+var minor_collectibles = 0
+var collectables_label
+var timer
+
 #export (NodePath) var Player
 #var player_collect
 
@@ -31,6 +36,11 @@ func _ready():
 	$Map2/Map2_Close.connect("pressed", self, "map2_close")
 	global = get_node("/root/Globals")
 	#player_collect = get_node(Player).get_node("/Area")
+	###############
+	minor_collectibles = 0
+	collectables_label = $HUD/Collectables/Label
+	$HUD/star_anim.visible = false
+	timer = 0
 	
 
 func _physics_process(delta):
@@ -60,6 +70,19 @@ func _physics_process(delta):
 	stamp_process()
 	listener_change_check()
 	update_listener()
+	add_score_UI(delta)
+
+func add_score_UI(delta):
+	if global.addscore != 0:
+		if timer == 0:
+			$HUD/star_anim.visible = true
+			get_node("../AnimationPlayer").play("star_collect")
+		timer += delta
+		if timer >= 1.3:
+			minor_collectibles += global.addscore
+			global.addscore = 0
+			timer = 0
+	collectables_label.text = str(minor_collectibles)
 
 func resume():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

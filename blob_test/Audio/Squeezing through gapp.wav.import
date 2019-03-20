@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Squeezing through gapp.wav-7d5f3d84d029277c03428530317b9d59.sample"
+
+[deps]
+
+source_file="res://Audio/Squeezing through gapp.wav"
+dest_files=[ "res://.import/Squeezing through gapp.wav-7d5f3d84d029277c03428530317b9d59.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

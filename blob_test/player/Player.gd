@@ -101,21 +101,23 @@ func _commands_process(commands):
 	var move_velocity : Vector3
 
 	move_velocity = get_core_frame_velocity();
-
-	# set the xz in the velocity for player movement
-	# leave y so gravity affects the body
-	move_velocity.x = motion.x*movement_speed
-	move_velocity.z = motion.y*movement_speed
+	if core_enabled:
+		# set the xz in the velocity for player movement
+		# leave y so gravity affects the body
+		move_velocity.x = motion.x*movement_speed
+		move_velocity.z = motion.y*movement_speed
 	
-	# change the y velocity to make that player jump
-	if jump_started:
-		move_velocity.y = JUMP_SPEED
+		# change the y velocity to make that player jump
+		if jump_started:
+			move_velocity.y = JUMP_SPEED
 	
-	#rotate the character relative to the camera
-	rotatePlayerToCamera(delta)
-	move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
-	# set the desired velocity of the core
-	move_core_frame(move_velocity, delta)	
+		#rotate the character relative to the camera
+		rotatePlayerToCamera(delta)
+		move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
+		# set the desired velocity of the core
+		move_core_frame(move_velocity, delta)	
+	else:
+		pass
 	
 	# this makes the camera follow the player
 	camera_lookat = camera_lookat.linear_interpolate( get_core_frame_position(), CAMERA_INTERPOLATE_SPEED * delta)
