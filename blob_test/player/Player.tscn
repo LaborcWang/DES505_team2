@@ -178,11 +178,12 @@ shader = SubResource( 14 )
 [sub_resource type="SphereShape" id=16]
 radius = 0.191347
 
-[sub_resource type="SphereShape" id=17]
-
 [sub_resource type="DynamicFont" id=18]
 size = 32
 font_data = ExtResource( 7 )
+
+[sub_resource type="BoxShape" id=20]
+extents = Vector3( 0.490432, 0.513551, 0.536235 )
 
 [sub_resource type="Animation" id=19]
 length = 1.5
@@ -214,12 +215,17 @@ tracks/1/keys = {
 [node name="Player" type="ParticleCharacter"]
 transform = Transform( 1, -4.65661e-10, -9.31323e-10, 0, 1, 2.98023e-08, 0, 2.98023e-08, 1, 0, -1.19209e-07, 0 )
 particle_body_model = SubResource( 1 )
-group_count = 1
+group_count = 2
 group_0/name = "Core"
 group_0/particles = [ 361, 336, 335, 327, 325, 323, 319, 310, 308, 306, 284, 282, 278, 276, 274, 273, 272, 260, 259, 257, 256, 252, 251, 239, 238, 237, 231, 213, 205, 204, 203, 202, 200, 198, 197, 196, 194, 182, 181, 176, 175, 166, 162, 146, 144, 141, 140, 139, 130, 128, 127, 126, 124, 123, 121, 110, 106, 97, 95, 78, 77, 74, 73, 72 ]
 group_0/clusters = [  ]
 group_0/anim_blend = 1.0
 group_0/default_cluster_stiffness = -1.0
+group_1/name = "All"
+group_1/particles = [  ]
+group_1/clusters = [  ]
+group_1/anim_blend = 1.0
+group_1/default_cluster_stiffness = -1.0
 model/radius = 0.075
 model/cluster_stiffness = 0.4
 core_enabled = true
@@ -253,12 +259,9 @@ script = ExtResource( 5 )
 transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0 )
 shape = SubResource( 16 )
 
-[node name="Core2" type="CollisionShape" parent="Area"]
-transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
-visible = false
-shape = SubResource( 17 )
-
 [node name="HUD" type="Control" parent="Area"]
+editor/display_folded = true
+visible = false
 margin_right = 133.0
 margin_bottom = 69.0
 
@@ -302,12 +305,19 @@ custom_fonts/font = SubResource( 18 )
 text = "0"
 
 [node name="coin_anim" type="TextureRect" parent="Area/HUD"]
-margin_left = 63.0
-margin_top = 30.0
-margin_right = 613.0
-margin_bottom = 580.0
-rect_scale = Vector2( 0.05, 0.05 )
+margin_left = 105.2
+margin_top = 89.4183
+margin_right = 655.2
+margin_bottom = 639.418
+rect_scale = Vector2( 0.0625, 0.0625 )
 texture = ExtResource( 6 )
+
+[node name="AreaAll" type="Area" parent="."]
+transform = Transform( 1, -8.27181e-24, 0, 0, 1, 0, 0, 0, 1, -1.35658e-22, -2.91323e-13, 8.68209e-21 )
+
+[node name="All" type="CollisionShape" parent="AreaAll"]
+transform = Transform( 1, -8.27181e-24, 0, 0, 1, 0, 0, 0, 1, 2.72977e-10, 0.586215, -1.74706e-08 )
+shape = SubResource( 20 )
 
 [node name="Jump" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 8 )

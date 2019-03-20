@@ -7,9 +7,13 @@ var coin_respawn_points = null
 
 var stamp_type = {"blue" : 0, "green" : 0, "yellow" : 0, "red" : 0}
 
+#########
+var addscore
+
 
 func _ready():
 	randomize()
+	addscore = 0
 
 func load_new_scene(new_scene_path):
 	get_tree().change_scene(new_scene_path)

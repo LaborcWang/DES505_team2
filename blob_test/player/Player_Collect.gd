@@ -18,18 +18,19 @@ func _ready():
 	addscore = 0
 
 func _physics_process(delta):
-	process_UI(delta)
-	if addscore != 0:
-		timer += delta
-		if timer >= 1.3:
-			minor_collectibles += addscore
-			addscore = 0
-			timer = 0
+	#process_UI(delta)
+	#if addscore != 0:
+	#	timer += delta
+	#	if timer >= 1.3:
+	#		minor_collectibles += addscore
+	#		addscore = 0
+	#		timer = 0
+	pass
 
 func add_score(value):
-	$HUD/coin_anim.visible = true
-	get_node("../AnimationPlayer").play("coin_animation")
-	addscore = value
+	#$HUD/coin_anim.visible = true
+	#get_node("../AnimationPlayer").play("coin_animation")
+	global.addscore = value
 	#minor_collectibles += value
 
 func process_UI(delta):
