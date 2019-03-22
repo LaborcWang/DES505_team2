@@ -16,7 +16,7 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("melt"):
+	if Input.is_action_pressed("melt") && not $Player.jump_started:
 		$Player.core_enabled = false
 		#$Player/Area/Core.scale.x = 0.5
 		#$Player/Area/Core.scale.y = 0.5
@@ -32,7 +32,4 @@ func _physics_process(delta):
 	cluster_stiffness = lerp(cluster_stiffness, target_cluster_stifness, delta*CLUSTER_STIFFNESS_INTERPOLATION_SPEED)
 	
 	$Player.set_group_cluster_stiffness("All", cluster_stiffness)
-	
-
-		
 

@@ -12,8 +12,8 @@ const CAMERA_INTERPOLATE_SPEED = 10
 const GROUND_RAY_LENGTH = 0.6
 const JUMP_SPEED = 15
 const CAMERA_ROTATION_SPEED = 0.01
-var CAMERA_X_ROT_MIN = -60
-var CAMERA_X_ROT_MAX = 30
+const CAMERA_X_ROT_MIN = -20
+const CAMERA_X_ROT_MAX = 45
 var is_grounded = false
 var jump_started = false
 var camera_lookat : Vector3
@@ -24,9 +24,8 @@ var audio_Moving
 var audio_Landing
 var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.15
-var strentch = false
-var strentch_velocity : Vector3
-
+var extend = false
+var extend_velocity : Vector3
 
 
 # Called when the node enters the scene tree for the first time.
@@ -41,8 +40,7 @@ func _ready():
 	audio_Squeezing.stop()
 	audio_Moving.stop()
 	audio_Landing.stop()
-	strentch = false
-	strentch_velocity = Vector3(0,0,0)
+	
 	#pass
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -68,9 +66,9 @@ func joypad_input(delta):
 
 func _physics_process(delta):
 	# called before the simulation is run
-	print(strentch)
+	
 	joypad_input(delta)
-	strentch_velocity = Vector3(0,1,0)
+	
 	# get the movement input
 	var movement_input = Vector2()
 	movement_input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -93,12 +91,13 @@ func _physics_process(delta):
 		audio_Jumping.play()
 	else:
 		jump_started = false
-		
-	if Input.is_action_pressed("strentch"):
-		strentch = true
-	else:
-		strentch = false
 	
+	if Input.is_action_pressed("extend"):
+		extend = true
+		extend_velocity += Vector3(0,1,0) * movement_speed * delta
+	else:
+		extend_velocity = Vector3(0,1,0)
+		extend = false
 
 
 func _commands_process(commands):
@@ -125,15 +124,16 @@ func _commands_process(commands):
 		move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
 		# set the desired velocity of the core
 		move_core_frame(move_velocity, delta)	
-	elif strentch:
-		var strencth_particle = get_group_origin_particle("A")
-		if strencth_particle != -1:
-			var current_velocity = commands.get_particle_velocity(strencth_particle)
-			var dv = strentch_velocity * delta
-			commands.set_particle_velocity(strencth_particle, dv+ current_velocity)
-			var other_partice = get_group_origin_particle("Core")
-			commands.set_particle_velocity(strencth_particle, current_velocity)
-	else:
+	if extend:
+		print(extend_velocity)
+		var extend_particle = get_group_origin_particle("A")
+		var other_particle  = get_group_origin_particle("Core")
+		if extend_particle != -1:
+			var current_velocity = commands.get_particle_velocity(extend_particle)
+			commands.set_particle_velocity(extend_particle, extend_velocity)
+			commands.set_particle_velocity(other_particle, -extend_velocity)
+			
+	else:		
 		pass
 	
 	# this makes the camera follow the player
@@ -159,14 +159,3 @@ func rotatePlayerToCamera(delta):
 		# interpolate current rotation with desired one
 		set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
 		
-
-
-func _on_Area_entry():
-	print("enrty")
-	CAMERA_X_ROT_MAX = CAMERA_X_ROT_MIN
-	pass # Replace with function body.
-
-
-func _on_Area_exit():
-	CAMERA_X_ROT_MAX = 30
-	pass # Replace with function body.
