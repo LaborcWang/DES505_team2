@@ -24,8 +24,8 @@ var audio_Moving
 var audio_Landing
 var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.15
-var extend = false
-var extend_velocity : Vector3
+var squash = false
+var squash_velocity : Vector3
 
 
 # Called when the node enters the scene tree for the first time.
@@ -93,11 +93,12 @@ func _physics_process(delta):
 		jump_started = false
 	
 	if Input.is_action_pressed("extend"):
-		extend = true
-		extend_velocity += Vector3(0,1,0) * movement_speed * delta
+		squash = true
+		if(squash_velocity.y < 4):
+			squash_velocity += Vector3(0,1,0).normalized() * movement_speed * delta
 	else:
-		extend_velocity = Vector3(0,1,0)
-		extend = false
+		squash_velocity = Vector3(0,1,0)
+		squash = false
 
 
 func _commands_process(commands):
@@ -124,14 +125,13 @@ func _commands_process(commands):
 		move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
 		# set the desired velocity of the core
 		move_core_frame(move_velocity, delta)	
-	if extend:
-		print(extend_velocity)
-		var extend_particle = get_group_origin_particle("A")
+	if squash:
+		print(squash_velocity)
+		var extend_particle = get_group_origin_particle("Extend")
 		var other_particle  = get_group_origin_particle("Core")
 		if extend_particle != -1:
-			var current_velocity = commands.get_particle_velocity(extend_particle)
-			commands.set_particle_velocity(extend_particle, extend_velocity)
-			commands.set_particle_velocity(other_particle, -extend_velocity)
+			#commands.set_particle_velocity(extend_particle, squash_velocity)
+			commands.set_particle_velocity(other_particle, -squash_velocity)
 			
 	else:		
 		pass
