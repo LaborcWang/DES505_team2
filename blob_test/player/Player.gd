@@ -24,8 +24,6 @@ var audio_Moving
 var audio_Landing
 var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.15
-var strentch = false
-var strentch_velocity : Vector3
 
 
 
@@ -41,8 +39,6 @@ func _ready():
 	audio_Squeezing.stop()
 	audio_Moving.stop()
 	audio_Landing.stop()
-	strentch = false
-	strentch_velocity = Vector3(0,0,0)
 	#pass
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -68,9 +64,9 @@ func joypad_input(delta):
 
 func _physics_process(delta):
 	# called before the simulation is run
-	print(strentch)
+	
 	joypad_input(delta)
-	strentch_velocity = Vector3(0,1,0)
+	
 	# get the movement input
 	var movement_input = Vector2()
 	movement_input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -93,11 +89,6 @@ func _physics_process(delta):
 		audio_Jumping.play()
 	else:
 		jump_started = false
-		
-	if Input.is_action_pressed("strentch"):
-		strentch = true
-	else:
-		strentch = false
 	
 
 
@@ -125,14 +116,6 @@ func _commands_process(commands):
 		move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
 		# set the desired velocity of the core
 		move_core_frame(move_velocity, delta)	
-	elif strentch:
-		var strencth_particle = get_group_origin_particle("A")
-		if strencth_particle != -1:
-			var current_velocity = commands.get_particle_velocity(strencth_particle)
-			var dv = strentch_velocity * delta
-			commands.set_particle_velocity(strencth_particle, dv+ current_velocity)
-			var other_partice = get_group_origin_particle("Core")
-			commands.set_particle_velocity(strencth_particle, current_velocity)
 	else:
 		pass
 	
