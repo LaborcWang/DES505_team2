@@ -16,6 +16,8 @@ const CAMERA_X_ROT_MIN = -20
 const CAMERA_X_ROT_MAX = 45
 var is_grounded = false
 var jump_started = false
+var boost_zone = false
+var boost_zone_speed = 15
 var camera_lookat : Vector3
 var camera_x_rot = 0.00
 var audio_Jumping
@@ -42,65 +44,15 @@ func _ready():
 	audio_Landing.stop()
 	
 	#pass
-func _input(event):
-	if event is InputEventMouseMotion:
-		camera_roate(event.relative.x,event.relative.y)
-
-func camera_roate(x, y):
-	$camera_base.rotate_y( -x * CAMERA_ROTATION_SPEED )
-	$camera_base.orthonormalize() # after relative transforms, camera needs to be renormalized
-	camera_x_rot = clamp(camera_x_rot + y * CAMERA_ROTATION_SPEED,deg2rad(CAMERA_X_ROT_MIN), deg2rad(CAMERA_X_ROT_MAX) )
-	$camera_base/camera_rot.rotation.x =  camera_x_rot
-
-func joypad_input(delta):
-	var joypad_vec = Vector2()
-	if Input.get_connected_joypads().size()>0:
-		if OS.get_name() == "Windows":
-			joypad_vec = Vector2(Input.get_joy_axis(0,2), Input.get_joy_axis(0,3))
-		if joypad_vec.length() < JOYPAD_DEADZONE:
-			joypad_vec = Vector2(0,0)
-		else:
-			joypad_vec = joypad_vec.normalized() * ((joypad_vec.length() - JOYPAD_DEADZONE) / (1 - JOYPAD_DEADZONE))
-			camera_roate(joypad_vec.x * JOYPAD_SENSITIVITY,-joypad_vec.y * JOYPAD_SENSITIVITY)
-
 
 func _physics_process(delta):
 	# called before the simulation is run
-	
 	joypad_input(delta)
-	
-	# get the movement input
-	var movement_input = Vector2()
-	movement_input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	movement_input.y = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
-
-	#smooth out input motion
-	var motion_target = movement_input
-	motion = motion.linear_interpolate(motion_target, MOTION_INTERPOLATE_SPEED * delta)
-	
-	var from = get_core_frame_position();
-	var to = from + Vector3.DOWN*GROUND_RAY_LENGTH
-	var result = get_world().direct_space_state.intersect_ray(from, to)
-	if result:
-		is_grounded = true
-	else:
-		is_grounded = false
-
-	if is_grounded && Input.is_action_just_pressed("jump"):
-		jump_started = true
-		audio_Jumping.play()
-	else:
-		jump_started = false
-	
-	if Input.is_action_pressed("extend"):
-		squash = true
-		if(squash_velocity.y < 4):
-			squash_velocity += Vector3(0,1,0).normalized() * movement_speed * delta
-	else:
-		squash_velocity = Vector3(0,1,0)
-		squash = false
+	movement_and_jump(delta)
+	boost_zone(delta)
 
 
+#Control the parapmeter of particle group
 func _commands_process(commands):
 	#if get_tree().paused == true:
 	#	movement_speed = 0
@@ -108,7 +60,6 @@ func _commands_process(commands):
 	# called after the simulation is run
 	var delta = get_physics_process_delta_time()
 	var move_velocity : Vector3
-
 	move_velocity = get_core_frame_velocity();
 	if core_enabled:
 		# set the xz in the velocity for player movement
@@ -140,7 +91,62 @@ func _commands_process(commands):
 	camera_lookat = camera_lookat.linear_interpolate( get_core_frame_position(), CAMERA_INTERPOLATE_SPEED * delta)
 	$camera_base.global_transform.origin = camera_lookat
 
+
+func movement_and_jump(delta):
+	# get the movement input
+	var movement_input = Vector2()
+	movement_input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	movement_input.y = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
+
+	#smooth out input motion
+	var motion_target = movement_input
+	motion = motion.linear_interpolate(motion_target, MOTION_INTERPOLATE_SPEED * delta)
 	
+	var from = get_core_frame_position();
+	var to = from + Vector3.DOWN*GROUND_RAY_LENGTH
+	var result = get_world().direct_space_state.intersect_ray(from, to)
+	if result:
+		is_grounded = true
+	else:
+		is_grounded = false
+
+	if is_grounded && Input.is_action_just_pressed("jump"):
+		jump_started = true
+	else:
+		jump_started = false
+	if Input.is_action_pressed("extend"):
+		squash = true
+		if(squash_velocity.y < 4):
+			squash_velocity += Vector3(0,1,0).normalized() * movement_speed * delta
+	else:
+		squash_velocity = Vector3(0,1,0).normalized()
+		squash = false	
+
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		camera_roate(event.relative.x,event.relative.y)
+
+
+func camera_roate(x, y):
+	$camera_base.rotate_y( -x * CAMERA_ROTATION_SPEED )
+	$camera_base.orthonormalize() # after relative transforms, camera needs to be renormalized
+	camera_x_rot = clamp(camera_x_rot + y * CAMERA_ROTATION_SPEED,deg2rad(CAMERA_X_ROT_MIN), deg2rad(CAMERA_X_ROT_MAX) )
+	$camera_base/camera_rot.rotation.x =  camera_x_rot
+
+
+func joypad_input(delta):
+	var joypad_vec = Vector2()
+	if Input.get_connected_joypads().size()>0:
+		if OS.get_name() == "Windows":
+			joypad_vec = Vector2(Input.get_joy_axis(0,2), Input.get_joy_axis(0,3))
+		if joypad_vec.length() < JOYPAD_DEADZONE:
+			joypad_vec = Vector2(0,0)
+		else:
+			joypad_vec = joypad_vec.normalized() * ((joypad_vec.length() - JOYPAD_DEADZONE) / (1 - JOYPAD_DEADZONE))
+			camera_roate(joypad_vec.x * JOYPAD_SENSITIVITY,-joypad_vec.y * JOYPAD_SENSITIVITY)
+
+
 func rotatePlayerToCamera(delta):
 	var cam_z = - $camera_base/camera_rot/Camera.global_transform.basis.z
 	var cam_x = $camera_base/camera_rot/Camera.global_transform.basis.x
@@ -158,4 +164,33 @@ func rotatePlayerToCamera(delta):
 
 		# interpolate current rotation with desired one
 		set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
-		
+
+#Change character's velocity in boost zone
+func boost_zone(delta):
+	var boost_zone_object
+	var boost_zone_forward
+	var boost_zone_velocity = get_core_frame_velocity()
+	if boost_zone:
+		boost_zone_object = get_parent().get_node("BoostZone")
+		#Get the boost_zone forward dirction and make the character face to that direction
+		boost_zone_forward = boost_zone_object.global_transform.basis.x
+		set_core_frame_rotation(boost_zone_object.global_transform.basis.inverse())
+		#Set specific run boost direction
+		boost_zone_velocity.x = 0;
+		boost_zone_velocity.y = 0;
+		boost_zone_velocity = boost_zone_object.global_transform.basis.z.normalized() * boost_zone_speed
+		move_core_frame(boost_zone_velocity,delta)
+		pass
+		#boost_zone_transform = get_parent().get_node("BoostZone").gloabl_transform.basis
+		#print(boost_zone_transform)
+
+
+func _on_BoostZone_entry():
+	boost_zone = true
+	print("entry")
+	pass # Replace with function body.
+
+
+func _on_BoostZone_exit():
+	boost_zone = false
+	pass # Replace with function body.

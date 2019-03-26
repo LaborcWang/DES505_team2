@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://stamp/Stamp_Station.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Spawn_Points.gd" type="Script" id=20]
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=21]
+[ext_resource path="res://SpeedUpArea/Trigger.tscn" type="PackedScene" id=22]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 5 )
@@ -109,6 +110,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.546309, 1.40876, 0.870863 )
 
 [node name="UI_Controller" type="Node" parent="."]
 pause_mode = 2
+editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="Pause" type="Control" parent="UI_Controller"]
@@ -338,3 +340,8 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.12747
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/star_collect = SubResource( 13 )
 
+[node name="BoostZone" parent="." instance=ExtResource( 22 )]
+transform = Transform( 2.64208, 0, -0.394703, 0, 0.0334064, 0, 0.207906, 0, 25.0735, 10.7343, -0.343749, -0.497172 )
+
+[connection signal="entry" from="BoostZone" to="Player" method="_on_BoostZone_entry"]
+[connection signal="exit" from="BoostZone" to="Player" method="_on_BoostZone_exit"]
