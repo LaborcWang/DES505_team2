@@ -5,10 +5,12 @@ const MELTING_CLUSTER_STIFFNESS = 0.035
 onready var cluster_stiffness = DEFAULT_CLUSTER_STIFFNESS
 onready var target_cluster_stifness = DEFAULT_CLUSTER_STIFFNESS
 const CLUSTER_STIFFNESS_INTERPOLATION_SPEED = 10.0
+var is_heat
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	is_heat = false
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,14 +18,15 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	if Input.is_action_pressed("melt") && not $Player.jump_started:
-		$Player.core_enabled = false
+	print(is_heat)
+	if (Input.is_action_pressed("melt") && not $Player.jump_started) || is_heat:
+		#$Player.core_enabled = false
 		#$Player/Area/Core.scale.x = 0.5
 		#$Player/Area/Core.scale.y = 0.5
 		#$Player/Area/Core.scale.z = 0.5
 		target_cluster_stifness = MELTING_CLUSTER_STIFFNESS
 	else:
-		$Player.core_enabled = true
+		#$Player.core_enabled = true
 		#$Player/Area/Core.scale.x = 1
 		#$Player/Area/Core.scale.y = 1
 		#$Player/Area/Core.scale.z = 1
@@ -33,3 +36,10 @@ func _physics_process(delta):
 	
 	$Player.set_group_cluster_stiffness("All", cluster_stiffness)
 
+func heat():
+	is_heat = true
+	#$Player.core_enabled = false
+
+func cool():
+	is_heat = false
+	#$Player.core_enabled = true

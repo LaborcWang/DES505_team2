@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://stamp/Stamp_Station.tscn" type="PackedScene" id=19]
 [ext_resource path="res://Spawn_Points.gd" type="Script" id=20]
 [ext_resource path="res://Wall.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Heat&Cool_Area/Cool_Area.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Heat&Cool_Area/Heat_Area.tscn" type="PackedScene" id=23]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 5 )
@@ -105,13 +107,15 @@ script = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 pause_mode = 1
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.546309, 1.40876, 0.870863 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2517, 6.74038, 0.992354 )
 
 [node name="UI_Controller" type="Node" parent="."]
 pause_mode = 2
+editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="Pause" type="Control" parent="UI_Controller"]
+editor/display_folded = true
 margin_left = 479.017
 margin_top = 249.962
 margin_right = 519.017
@@ -252,6 +256,7 @@ margin_bottom = 321.0
 custom_fonts/font = SubResource( 11 )
 
 [node name="HUD" type="Control" parent="UI_Controller"]
+editor/display_folded = true
 margin_right = 40.0
 margin_bottom = 40.0
 
@@ -337,4 +342,22 @@ transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.12747
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/star_collect = SubResource( 13 )
+
+[node name="MeltLevelTest" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.95116, 0, 0 )
+
+[node name="Wall3" parent="MeltLevelTest" instance=ExtResource( 21 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7.72502, 5.75684, 1.03127 )
+
+[node name="Wall4" parent="MeltLevelTest" instance=ExtResource( 21 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.27052, 5.75684, 1.04245 )
+
+[node name="Wall5" parent="MeltLevelTest" instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -8.39267, 3.17528, 1.14281 )
+
+[node name="Cool_Area" parent="MeltLevelTest" instance=ExtResource( 22 )]
+transform = Transform( 1, 0, 0, 0, 0.2, 0, 0, 0, 1, -8.43738, 4.34702, 1.12901 )
+
+[node name="Heat_Area" parent="MeltLevelTest" instance=ExtResource( 23 )]
+transform = Transform( 0.25, 0, 0, 0, 0.75, 0, 0, 0, 1, -8.48843, 7.01995, 1.03271 )
 

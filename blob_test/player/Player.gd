@@ -158,4 +158,4 @@ func rotatePlayerToCamera(delta):
 
 		# interpolate current rotation with desired one
 		set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
-		
+
