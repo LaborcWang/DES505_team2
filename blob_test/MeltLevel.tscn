@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Main.gd" type="Script" id=1]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Heat&Cool_Area/Heat_Area.tscn" type="PackedScene" id=3]
+[ext_resource path="res://level/meltinglevelexport.obj" type="PackedScene" id=4]
+
+[node name="MeltLevel" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.51908, 0 )
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949619, -2.79244, -4.15167 )
+
+[node name="Heat_Area" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.625024, -1.4088, 3.56011 )
+
+[node name="Scene Root" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.78016, 0.237864, -5.12504 )
+
