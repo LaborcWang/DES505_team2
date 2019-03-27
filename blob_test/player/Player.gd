@@ -18,6 +18,9 @@ var is_grounded = false
 var jump_started = false
 var boost_zone = false
 var boost_zone_speed = 15
+var boost_zone_forward: Vector3
+var boost_zone_entry : bool
+var boost_zone_exit : bool
 var camera_lookat : Vector3
 var camera_x_rot = 0.00
 var audio_Jumping
@@ -42,7 +45,6 @@ func _ready():
 	audio_Squeezing.stop()
 	audio_Moving.stop()
 	audio_Landing.stop()
-	
 	#pass
 
 func _physics_process(delta):
@@ -50,6 +52,7 @@ func _physics_process(delta):
 	joypad_input(delta)
 	movement_and_jump(delta)
 	boost_zone(delta)
+	#boost_zone(delta)
 
 
 #Control the parapmeter of particle group
@@ -81,8 +84,8 @@ func _commands_process(commands):
 		var extend_particle = get_group_origin_particle("Extend")
 		var other_particle  = get_group_origin_particle("Core")
 		if extend_particle != -1:
-			#commands.set_particle_velocity(extend_particle, squash_velocity)
-			commands.set_particle_velocity(other_particle, -squash_velocity)
+			commands.set_particle_velocity(extend_particle, squash_velocity)
+			#commands.set_particle_velocity(other_particle, -squash_velocity)
 			
 	else:		
 		pass
@@ -165,32 +168,33 @@ func rotatePlayerToCamera(delta):
 		# interpolate current rotation with desired one
 		set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
 
-#Change character's velocity in boost zone
+func setForwardDirection(boost_area_forward_direction, entry, exit):
+	boost_zone_forward = boost_area_forward_direction
+	print(boost_zone_forward)
+	boost_zone_entry = entry
+	boost_zone_exit = exit
+	
 func boost_zone(delta):
-	var boost_zone_object
-	var boost_zone_forward
 	var boost_zone_velocity = get_core_frame_velocity()
-	if boost_zone:
-		boost_zone_object = get_parent().get_node("BoostZone")
-		#Get the boost_zone forward dirction and make the character face to that direction
-		boost_zone_forward = boost_zone_object.global_transform.basis.x
-		set_core_frame_rotation(boost_zone_object.global_transform.basis.inverse())
-		#Set specific run boost direction
-		boost_zone_velocity.x = 0;
-		boost_zone_velocity.y = 0;
-		boost_zone_velocity = boost_zone_object.global_transform.basis.z.normalized() * boost_zone_speed
+	if boost_zone_entry:
+		boost_zone_velocity = boost_zone_forward * boost_zone_speed
 		move_core_frame(boost_zone_velocity,delta)
-		pass
+#Change character's velocity in boost zone
+#func boost_zone(delta,boost_zone_forward):
+	#var boost_zone_object = get_node("/root/BoostAreaVariables")
+	#var boost_zone_forward
+	#var boost_zone_velocity = get_core_frame_velocity()
+	#boost_zone = boost_zone_object.entry
+	#if boost_zone:
+		#Get the boost_zone forward dirction and make the character face to that direction
+		#boost_zone_forward = boost_zone_object.boost_zone_transform_basis_z
+		#set_core_frame_rotation(boost_zone_object.transform.basis)
+		#Set specific run boost direction
+		#boost_zone_velocity = boost_zone_forward * boost_zone_speed
+		#print(boost_zone_velocity)
+		#move_core_frame(boost_zone_velocity,delta)
+		#pass
 		#boost_zone_transform = get_parent().get_node("BoostZone").gloabl_transform.basis
 		#print(boost_zone_transform)
 
 
-func _on_BoostZone_entry():
-	boost_zone = true
-	print("entry")
-	pass # Replace with function body.
-
-
-func _on_BoostZone_exit():
-	boost_zone = false
-	pass # Replace with function body.
