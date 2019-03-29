@@ -236,6 +236,7 @@ group_2/anim_blend = 1.0
 group_2/default_cluster_stiffness = -1.0
 model/radius = 0.075
 model/cluster_stiffness = 0.4
+core_enabled = true
 script = ExtResource( 1 )
 
 [node name="CollisionMesh" type="ParticleBodyMeshInstance" parent="."]
