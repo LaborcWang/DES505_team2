@@ -1,87 +1,87 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://UI_Controller.gd" type="Script" id=3]
-[ext_resource path="res://UI/button_background.png" type="Texture" id=4]
-[ext_resource path="res://UI/button_resume_pressed2.png" type="Texture" id=5]
-[ext_resource path="res://UI/button_resume_normal2.png" type="Texture" id=6]
-[ext_resource path="res://Titillium-Regular.otf" type="DynamicFontData" id=7]
-[ext_resource path="res://UI/button_quit_pressed2.png" type="Texture" id=8]
-[ext_resource path="res://UI/button_quit_normal2.png" type="Texture" id=9]
-[ext_resource path="res://Map.PNG" type="Texture" id=10]
-[ext_resource path="res://stamp/Blue_Stamp.png" type="Texture" id=11]
-[ext_resource path="res://stamp/Green_Stamp.png" type="Texture" id=12]
-[ext_resource path="res://stamp/Red_Stamp.png" type="Texture" id=13]
-[ext_resource path="res://stamp/Yellow_Stamp.png" type="Texture" id=14]
-[ext_resource path="res://Star/star.png" type="Texture" id=15]
-[ext_resource path="res://Marlboro.ttf" type="DynamicFontData" id=16]
-[ext_resource path="res://level/meltinglevelexportupdated.obj" type="PackedScene" id=17]
-[ext_resource path="res://Heat&Cool_Area/Cool_Area.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Heat&Cool_Area/Heat_Area.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Star/Star.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Heat&Cool_Area/Invisible_Cool_Area.tscn" type="PackedScene" id=21]
-[ext_resource path="res://level/rockpillarexportcolour.obj" type="PackedScene" id=22]
-[ext_resource path="res://Wall.tscn" type="PackedScene" id=23]
-[ext_resource path="res://stamp/Stamp_Station.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Spawn_Points.gd" type="Script" id=25]
+[ext_resource path="res://Spin_State_Controller.gd" type="Script" id=3]
+[ext_resource path="res://UI_Controller.gd" type="Script" id=4]
+[ext_resource path="res://UI/button_background.png" type="Texture" id=5]
+[ext_resource path="res://UI/button_resume_pressed2.png" type="Texture" id=6]
+[ext_resource path="res://UI/button_resume_normal2.png" type="Texture" id=7]
+[ext_resource path="res://Titillium-Regular.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://UI/button_quit_pressed2.png" type="Texture" id=9]
+[ext_resource path="res://UI/button_quit_normal2.png" type="Texture" id=10]
+[ext_resource path="res://Map.PNG" type="Texture" id=11]
+[ext_resource path="res://stamp/Blue_Stamp.png" type="Texture" id=12]
+[ext_resource path="res://stamp/Green_Stamp.png" type="Texture" id=13]
+[ext_resource path="res://stamp/Red_Stamp.png" type="Texture" id=14]
+[ext_resource path="res://stamp/Yellow_Stamp.png" type="Texture" id=15]
+[ext_resource path="res://Star/star.png" type="Texture" id=16]
+[ext_resource path="res://Marlboro.ttf" type="DynamicFontData" id=17]
+[ext_resource path="res://level/meltinglevelexportupdated.obj" type="PackedScene" id=18]
+[ext_resource path="res://Heat&Cool_Area/Cool_Area.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Heat&Cool_Area/Heat_Area.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Star/Star.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Heat&Cool_Area/Invisible_Cool_Area.tscn" type="PackedScene" id=22]
+[ext_resource path="res://level/rockpillarexportcolour.obj" type="PackedScene" id=23]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=24]
+[ext_resource path="res://stamp/Stamp_Station.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Spawn_Points.gd" type="Script" id=26]
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 310, 149 )
 
 [sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 310, 149 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 20
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 20
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="StyleBoxTexture" id=5]
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 region_rect = Rect2( 0, 0, 129, 67 )
 
 [sub_resource type="StyleBoxTexture" id=6]
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 129, 67 )
 
 [sub_resource type="DynamicFont" id=7]
 size = 20
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=8]
 size = 20
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=9]
 size = 32
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=10]
 size = 20
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=11]
 size = 24
 outline_size = 4
 outline_color = Color( 0.905882, 0.0784314, 0.156863, 1 )
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=12]
 size = 32
-font_data = ExtResource( 16 )
+font_data = ExtResource( 17 )
+
+[sub_resource type="BoxShape" id=13]
 
 [sub_resource type="BoxShape" id=14]
 
-[sub_resource type="BoxShape" id=15]
-
-[sub_resource type="Animation" id=13]
-resource_name = "star_collect"
+[sub_resource type="Animation" id=15]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI_Controller/HUD/star_anim:rect_position")
@@ -115,10 +115,16 @@ script = ExtResource( 1 )
 pause_mode = 1
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.638, 6.94091, -7.53511 )
 
+[node name="Spin_State_Controller" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 27.5941, 7.31572, -7.58098 )
+script = ExtResource( 3 )
+
+[node name="Camera" type="Camera" parent="Spin_State_Controller"]
+
 [node name="UI_Controller" type="Node" parent="."]
 pause_mode = 2
 editor/display_folded = true
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="Pause" type="Control" parent="UI_Controller"]
 editor/display_folded = true
@@ -133,7 +139,7 @@ margin_top = -222.18
 margin_right = 402.149
 margin_bottom = 379.82
 rect_scale = Vector2( 0.75, 0.75 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="Resume" type="Button" parent="UI_Controller/Pause/Background"]
 margin_left = 130.0
@@ -176,7 +182,7 @@ margin_left = -475.953
 margin_top = -250.0
 margin_right = 558.047
 margin_bottom = 351.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 expand = true
 stretch_mode = 1
 
@@ -209,7 +215,7 @@ editor/display_folded = true
 visible = false
 margin_right = 1022.0
 margin_bottom = 601.0
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 expand = true
 stretch_mode = 1
 
@@ -219,7 +225,7 @@ margin_left = 399.0
 margin_top = 5.0
 margin_right = 655.0
 margin_bottom = 238.0
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="Green_Stamp" type="TextureRect" parent="UI_Controller/Map2"]
 visible = false
@@ -227,7 +233,7 @@ margin_left = 69.9999
 margin_top = 176.0
 margin_right = 326.0
 margin_bottom = 409.0
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="Red_Stamp" type="TextureRect" parent="UI_Controller/Map2"]
 visible = false
@@ -235,7 +241,7 @@ margin_left = 747.999
 margin_top = 143.0
 margin_right = 1004.0
 margin_bottom = 376.0
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 
 [node name="Yellow_Stamp" type="TextureRect" parent="UI_Controller/Map2"]
 visible = false
@@ -243,7 +249,7 @@ margin_left = 407.999
 margin_top = 342.0
 margin_right = 663.999
 margin_bottom = 575.0
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 
 [node name="Map2_Close" type="Button" parent="UI_Controller/Map2"]
 margin_left = 941.999
@@ -277,7 +283,7 @@ margin_top = 16.0
 margin_right = 135.0
 margin_bottom = 104.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
 [node name="Label" type="Label" parent="UI_Controller/HUD/Collectables"]
 margin_left = 115.637
@@ -293,87 +299,88 @@ margin_top = 16.0
 margin_right = 135.0
 margin_bottom = 104.0
 rect_scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
-[node name="MeltLevel" parent="." instance=ExtResource( 17 )]
+[node name="MeltLevel" parent="." instance=ExtResource( 18 )]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6046, 9.74866, -8.29703 )
 
-[node name="Cool_Area" parent="MeltLevel" instance=ExtResource( 18 )]
+[node name="Cool_Area" parent="MeltLevel" instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 1.8, 0, 0, 0, 1, -4.58044, -6.16749, 8.80828 )
 
-[node name="Heat_Area" parent="MeltLevel" instance=ExtResource( 19 )]
+[node name="Heat_Area" parent="MeltLevel" instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 1.5, 0, 0, 0, 1, -4.6059, -1.05704, 8.67133 )
 
-[node name="Heat_Area2" parent="MeltLevel" instance=ExtResource( 19 )]
+[node name="Heat_Area2" parent="MeltLevel" instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 1.5, 0, 0, 0, 1, -4.53457, -2.30075, 25.6584 )
 
-[node name="Star" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -2.57216, 1.84327 )
 
-[node name="Star2" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star2" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -2.57216, 5.18762 )
 
-[node name="Star3" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star3" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -2.18293, 8.78869 )
 
-[node name="Star4" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star4" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.49925, 3.69166 )
 
-[node name="Star5" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star5" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.49925, 5.81031 )
 
-[node name="Star6" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star6" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.49925, 9.00034 )
 
-[node name="Star7" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star7" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.49925, 11.5546 )
 
-[node name="Star8" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star8" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.49925, 13.6193 )
 
-[node name="Star9" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star9" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.49925, 16.0251 )
 
-[node name="Star10" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star10" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -3.74936, 34.3122 )
 
-[node name="Star11" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star11" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -3.74936, 36.0486 )
 
-[node name="Star12" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star12" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -5.56701, 38.6141 )
 
-[node name="Star13" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star13" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -6.87365, 44.9662 )
 
-[node name="Star14" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star14" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -5.33947, 19.5534 )
 
-[node name="Star15" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star15" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -3.71029, 21.9445 )
 
-[node name="Star16" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star16" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.21577, 50.2217 )
 
-[node name="Star17" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star17" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.21577, 57.1675 )
 
-[node name="Star18" parent="MeltLevel" instance=ExtResource( 20 )]
+[node name="Star18" parent="MeltLevel" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.39196, -7.21577, 64.5758 )
 
-[node name="Heat_Area3" parent="MeltLevel" instance=ExtResource( 19 )]
+[node name="Heat_Area3" parent="MeltLevel" instance=ExtResource( 20 )]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, -4.37053, -5.59924, 44.7941 )
 
-[node name="Cool_Area2" parent="MeltLevel" instance=ExtResource( 18 )]
+[node name="Cool_Area2" parent="MeltLevel" instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, -4.47724, -6.45963, 53.6253 )
 
-[node name="Cool_Area3" parent="MeltLevel" instance=ExtResource( 18 )]
+[node name="Cool_Area3" parent="MeltLevel" instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 2, 0, 0, 0, 1, -4.49207, -6.43552, 61.5792 )
 
-[node name="Invisible_Cool_Area" parent="MeltLevel" instance=ExtResource( 21 )]
+[node name="Invisible_Cool_Area" parent="MeltLevel" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.92375, -3.2416, 33.9448 )
 
-[node name="Invisible_Cool_Area2" parent="MeltLevel" instance=ExtResource( 21 )]
+[node name="Invisible_Cool_Area2" parent="MeltLevel" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.8923, -6.94756, 79.1579 )
 
 [node name="AirWall" type="Spatial" parent="MeltLevel"]
@@ -383,56 +390,57 @@ transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 50, 0.47, 1.7, -108.16 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55751, 0, 3.01283 )
 
 [node name="CollisionShape" type="CollisionShape" parent="MeltLevel/AirWall/StaticBody"]
-shape = SubResource( 14 )
+shape = SubResource( 13 )
 
 [node name="ParticlePrimitiveBody" type="ParticlePrimitiveBody" parent="MeltLevel/AirWall/StaticBody/CollisionShape"]
-shape = SubResource( 15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+shape = SubResource( 14 )
 
-[node name="Level" parent="." instance=ExtResource( 22 )]
+[node name="Level" parent="." instance=ExtResource( 23 )]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0153854, 1.19209e-07, 0.0104287 )
 
-[node name="Cool_Area" parent="Level" instance=ExtResource( 18 )]
+[node name="Cool_Area" parent="Level" instance=ExtResource( 19 )]
 transform = Transform( 1, 0, 0, 0, 0.2, 0, 0, 0, 1, -10.3732, 4.34702, 4.04398 )
 
-[node name="Heat_Area" parent="Level" instance=ExtResource( 19 )]
+[node name="Heat_Area" parent="Level" instance=ExtResource( 20 )]
 transform = Transform( 0.25, 0, 0, 0, 0.75, 0, 0, 0, 1, -10.4242, 7.01995, 3.94768 )
 
-[node name="Wall3" parent="Level" instance=ExtResource( 23 )]
+[node name="Wall3" parent="Level" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.66079, 5.75684, 3.94624 )
 
-[node name="Wall4" parent="Level" instance=ExtResource( 23 )]
+[node name="Wall4" parent="Level" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.2063, 5.75684, 3.95742 )
 
-[node name="Wall5" parent="Level" instance=ExtResource( 23 )]
+[node name="Wall5" parent="Level" instance=ExtResource( 24 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -10.3284, 3.17528, 4.05778 )
 
-[node name="Star" parent="Level" instance=ExtResource( 20 )]
+[node name="Star" parent="Level" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78661, 1.5, -0.122429 )
 
-[node name="Star2" parent="Level" instance=ExtResource( 20 )]
+[node name="Star2" parent="Level" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34408, 1.49214, 3.55279 )
 
-[node name="Stamp_Station2" parent="Level" instance=ExtResource( 24 )]
+[node name="Stamp_Station2" parent="Level" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1297, 2.08411, 3.84115 )
 stamp_station_type = "green"
 
-[node name="Stamp_Station" parent="Level" instance=ExtResource( 24 )]
+[node name="Stamp_Station" parent="Level" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0939, 2.72903, 77.4202 )
 stamp_station_type = "blue"
 
-[node name="Stamp_Station3" parent="Level" instance=ExtResource( 24 )]
+[node name="Stamp_Station3" parent="Level" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49048, 2.09859, -12.0258 )
 stamp_station_type = "yellow"
 
-[node name="Stamp_Station4" parent="Level" instance=ExtResource( 24 )]
+[node name="Stamp_Station4" parent="Level" instance=ExtResource( 25 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.36103, 1.99415, 3.72796 )
 stamp_station_type = "red"
 
 [node name="Spawn_Points" type="Spatial" parent="Level"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0153854, -1.19209e-07, -0.0104287 )
-script = ExtResource( 25 )
+script = ExtResource( 26 )
 
 [node name="Position3D" type="Position3D" parent="Level/Spawn_Points"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.277, 1.5, 0 )
@@ -446,10 +454,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.347, 1.5, 0 )
 [node name="Position3D4" type="Position3D" parent="Level/Spawn_Points"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3.891 )
 
-[node name="Wall" parent="Level" instance=ExtResource( 23 )]
+[node name="Wall" parent="Level" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.38606, 2.33056, 1.03202 )
 
-[node name="Wall2" parent="Level" instance=ExtResource( 23 )]
+[node name="Wall2" parent="Level" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.14286, 2.33056, 1.03202 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
@@ -457,5 +465,5 @@ transform = Transform( 0.777488, -0.473729, 0.413634, 0, 0.657713, 0.753269, -0.
 shadow_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/star_collect = SubResource( 13 )
+anims/star_collect = SubResource( 15 )
 

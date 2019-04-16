@@ -26,6 +26,7 @@ var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.15
 var squash = false
 var squash_velocity : Vector3
+var spin = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -66,7 +67,9 @@ func joypad_input(delta):
 
 func _physics_process(delta):
 	# called before the simulation is run
-	
+	if spin:
+		#rotate_y(PI/24*delta)
+		return
 	joypad_input(delta)
 	
 	# get the movement input
@@ -158,4 +161,5 @@ func rotatePlayerToCamera(delta):
 
 		# interpolate current rotation with desired one
 		set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
+
 
