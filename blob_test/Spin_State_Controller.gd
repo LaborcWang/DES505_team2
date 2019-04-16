@@ -1,7 +1,5 @@
 extends Spatial
 
-var forward
-
 
 func _ready():
 	pass

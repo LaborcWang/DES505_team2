@@ -302,7 +302,6 @@ rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 16 )
 
 [node name="MeltLevel" parent="." instance=ExtResource( 18 )]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 32.6046, 9.74866, -8.29703 )
 
 [node name="Cool_Area" parent="MeltLevel" instance=ExtResource( 19 )]
