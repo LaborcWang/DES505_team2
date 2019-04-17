@@ -9,7 +9,7 @@ func _ready():
 	exit = false
 
 func _on_BoostArea_area_entered(area):
-	if area.get_owner().name == "Player":
+	if area.get_owner().name == "PlayerSceneRoot":
 		entry = true
 		exit = false
 		boost_zone_transform_basis_z = get_parent().transform.basis.z
@@ -20,7 +20,7 @@ func _on_BoostArea_area_entered(area):
 	pass # Replace with function body.
 
 func _on_BoostArea_area_exited(area):
-	if area.get_owner().name == "Player":
+	if area.get_owner().name == "PlayerSceneRoot":
 		exit = true
 		entry = false
 		boost_zone_transform_basis_z = Vector3(0,0,0)

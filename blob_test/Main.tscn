@@ -116,9 +116,13 @@ tracks/2/keys = {
 [node name="Main" type="Spatial"]
 script = ExtResource( 1 )
 
+[node name="PlayerSceneRoot" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 11.3077, 0.40876, -13.2822 )
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 pause_mode = 1
 transform = Transform( 0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 11.3077, 0.40876, -13.2822 )
+visible = false
 
 [node name="UI_Controller" type="Node" parent="."]
 pause_mode = 2

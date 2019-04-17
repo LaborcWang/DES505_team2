@@ -215,8 +215,18 @@ tracks/1/keys = {
 "values": [ Vector2( 480, 230 ), Vector2( 480, 200 ), Vector2( 480, 230 ), Vector2( 341.401, 196.066 ), Vector2( 209.45, 148.837 ), Vector2( 105.2, 89.4183 ), Vector2( 63, 30 ) ]
 }
 
-[node name="Player" type="ParticleCharacter"]
+[node name="PlayerSceneRoot" type="Spatial"]
+
+[node name="camera_base" type="Spatial" parent="."]
 transform = Transform( 0.988699, -4.92819e-09, -0.149915, -3.60822e-16, 1, 2.98023e-08, 0.149915, 2.93957e-08, 0.988699, 0, -1.19209e-07, 0 )
+
+[node name="camera_rot" type="Spatial" parent="camera_base"]
+
+[node name="Camera" type="Camera" parent="camera_base/camera_rot"]
+transform = Transform( 0.999936, 0.00548876, -0.0098825, -3.36898e-10, 0.874214, 0.48554, 0.0113044, -0.485509, 0.874158, -0.0174395, 2.35228, 3.27653 )
+
+[node name="Player" type="ParticleCharacter" parent="."]
+transform = Transform( -0.897243, 0, 0.441537, 0, 1, 0, -0.441537, 0, -0.897243, 0, -1.19209e-07, 0 )
 particle_body_model = SubResource( 1 )
 group_count = 3
 group_0/name = "Core"
@@ -239,41 +249,34 @@ model/cluster_stiffness = 0.4
 core_enabled = true
 script = ExtResource( 1 )
 
-[node name="CollisionMesh" type="ParticleBodyMeshInstance" parent="."]
+[node name="CollisionMesh" type="ParticleBodyMeshInstance" parent="Player"]
 visible = false
 mesh = ExtResource( 2 )
 material/0 = null
 
-[node name="BodyMesh" type="ParticleBodyMeshInstance" parent="."]
+[node name="BodyMesh" type="ParticleBodyMeshInstance" parent="Player"]
 mesh = ExtResource( 3 )
 material/0 = SubResource( 15 )
 
-[node name="EyesMesh" type="ParticleBodyMeshInstance" parent="."]
+[node name="EyesMesh" type="ParticleBodyMeshInstance" parent="Player"]
 mesh = ExtResource( 4 )
 material/0 = null
 
-[node name="camera_base" type="Spatial" parent="."]
-
-[node name="camera_rot" type="Spatial" parent="camera_base"]
-
-[node name="Camera" type="Camera" parent="camera_base/camera_rot"]
-transform = Transform( 0.999936, 0.00548876, -0.0098825, -3.36898e-10, 0.874214, 0.48554, 0.0113044, -0.485509, 0.874158, -0.0174395, 2.35228, 3.27653 )
-
-[node name="Area" type="Area" parent="."]
-transform = Transform( 0.988699, -4.92819e-09, -0.149915, -3.60822e-16, 1, 2.98023e-08, 0.149915, 2.93957e-08, 0.988699, -0.0275709, 0.260849, -0.00410705 )
+[node name="Area" type="Area" parent="Player"]
+transform = Transform( 0.988699, -4.92819e-09, -0.149915, -3.60822e-16, 1, 2.98023e-08, 0.149915, 2.93957e-08, 0.988699, -0.0275709, 0.260849, -0.00410706 )
 script = ExtResource( 5 )
 
-[node name="Core" type="CollisionShape" parent="Area"]
+[node name="Core" type="CollisionShape" parent="Player/Area"]
 transform = Transform( 1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0 )
 shape = SubResource( 16 )
 
-[node name="HUD" type="Control" parent="Area"]
+[node name="HUD" type="Control" parent="Player/Area"]
 editor/display_folded = true
 visible = false
 margin_right = 133.0
 margin_bottom = 69.0
 
-[node name="Panel" type="Panel" parent="Area/HUD"]
+[node name="Panel" type="Panel" parent="Player/Area/HUD"]
 editor/display_folded = true
 visible = false
 margin_left = 27.0
@@ -281,7 +284,7 @@ margin_top = 26.0
 margin_right = 230.0
 margin_bottom = 70.0
 
-[node name="Label" type="Label" parent="Area/HUD/Panel"]
+[node name="Label" type="Label" parent="Player/Area/HUD/Panel"]
 margin_left = -27.0
 margin_top = -26.0
 margin_right = 229.0
@@ -291,11 +294,11 @@ text = "Minor Collectibles:
 align = 1
 valign = 1
 
-[node name="Collectables" type="Control" parent="Area/HUD"]
+[node name="Collectables" type="Control" parent="Player/Area/HUD"]
 margin_right = 40.0
 margin_bottom = 40.0
 
-[node name="Coin" type="TextureRect" parent="Area/HUD/Collectables"]
+[node name="Coin" type="TextureRect" parent="Player/Area/HUD/Collectables"]
 margin_left = 63.0
 margin_top = 30.0
 margin_right = 613.0
@@ -304,7 +307,7 @@ rect_scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 6 )
 stretch_mode = 1
 
-[node name="Label" type="Label" parent="Area/HUD/Collectables"]
+[node name="Label" type="Label" parent="Player/Area/HUD/Collectables"]
 margin_left = 116.163
 margin_top = 32.4321
 margin_right = 158.163
@@ -312,7 +315,7 @@ margin_bottom = 66.4321
 custom_fonts/font = SubResource( 17 )
 text = "0"
 
-[node name="coin_anim" type="TextureRect" parent="Area/HUD"]
+[node name="coin_anim" type="TextureRect" parent="Player/Area/HUD"]
 margin_left = 105.2
 margin_top = 89.4183
 margin_right = 655.2
@@ -320,32 +323,32 @@ margin_bottom = 639.418
 rect_scale = Vector2( 0.0625, 0.0625 )
 texture = ExtResource( 6 )
 
-[node name="AreaAll" type="Area" parent="."]
+[node name="AreaAll" type="Area" parent="Player"]
 transform = Transform( 1, -8.27181e-24, 0, 0, 1, 0, 0, 0, 1, 2.67655e-10, 0.574785, -1.71299e-08 )
 
-[node name="All" type="CollisionShape" parent="AreaAll"]
+[node name="All" type="CollisionShape" parent="Player/AreaAll"]
 transform = Transform( 1, -8.27181e-24, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shape = SubResource( 18 )
 
-[node name="Area2" type="Area" parent="."]
+[node name="Area2" type="Area" parent="Player"]
 transform = Transform( 1, -8.27181e-24, 0, 0, 1, 0, 0, 0, 1, 1.8914e-10, 0.406175, -1.21049e-08 )
 
-[node name="Extend" type="CollisionShape" parent="Area2"]
+[node name="Extend" type="CollisionShape" parent="Player/Area2"]
 transform = Transform( 1, -8.27181e-24, 0, 0, 1, 0, 0, 0, 1, 2.93937e-10, 0.631225, -1.88119e-08 )
 shape = SubResource( 19 )
 
-[node name="Jump" type="AudioStreamPlayer3D" parent="."]
+[node name="Jump" type="AudioStreamPlayer3D" parent="Player"]
 stream = ExtResource( 8 )
 
-[node name="Squeeze" type="AudioStreamPlayer3D" parent="."]
+[node name="Squeeze" type="AudioStreamPlayer3D" parent="Player"]
 stream = ExtResource( 8 )
 
-[node name="Land" type="AudioStreamPlayer3D" parent="."]
+[node name="Land" type="AudioStreamPlayer3D" parent="Player"]
 stream = ExtResource( 8 )
 
-[node name="Move" type="AudioStreamPlayer3D" parent="."]
+[node name="Move" type="AudioStreamPlayer3D" parent="Player"]
 stream = ExtResource( 8 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 anims/coin_animation = SubResource( 20 )
 
