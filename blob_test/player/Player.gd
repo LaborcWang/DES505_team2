@@ -32,7 +32,7 @@ var squash = false
 var squash_velocity : Vector3
 var spin = false
 var spin_timer:float
-var spin_time = 30
+var spin_time = 15
 var spin_input_map = {"D":0, "W":1, "A":2, "S":3}
 var spin_input_record : Array
 var current_input = -1
@@ -70,6 +70,7 @@ func spin_last_expect(input:int) -> int:
 
 func spin_input_test(event):
 	if spin:
+		spin_input_record.clear()
 		return
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_D:
@@ -98,6 +99,8 @@ func spin_input_test(event):
 				spin_input_record.resize(spin_input_size)
 				spin_input_record[spin_input_size-1] = current_input
 	if spin_input_record.size() == 12:
+		spin_input_record.clear()
+		spin_input_size = spin_input_record.size()
 		spin = true
 	current_input = -1
 
