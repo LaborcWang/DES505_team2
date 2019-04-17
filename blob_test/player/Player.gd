@@ -12,7 +12,7 @@ const SPIN_JUMP_SPEED = 20
 const CAMERA_ROTATION_SPEED = 0.01
 const CAMERA_X_ROT_MIN = -20
 const CAMERA_X_ROT_MAX = 45
-const SELF_ROTATE_SPEED = 1
+const SELF_ROTATE_SPEED = 20
 var is_grounded = false
 var jump_started = false
 var boost_zone = false
@@ -54,7 +54,6 @@ func _physics_process(delta):
 	joypad_input(delta)
 	movement_and_jump(delta)
 	boost_zone(delta)
-
 	#boost_zone(delta)
 
 
@@ -143,6 +142,8 @@ func movement_and_jump(delta):
 		spin_timer += delta
 		if spin_timer >= spin_time:
 			spin = false
+	if spin:
+		self_rotate(delta)
 
 
 func _input(event):
@@ -189,8 +190,8 @@ func rotatePlayerToCamera(delta):
 		var q_from = get_core_frame_rotation()
 		var q_to = Quat(Transform().looking_at(target,Vector3(0,1,0)).basis)
 
-		# interpolate current rotation with desired one
-		set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
+		if not spin:	# interpolate current rotation with desired one
+			set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
 
 func setForwardDirection(boost_area_forward_direction, entry, exit):
 	boost_zone_forward = boost_area_forward_direction
@@ -204,7 +205,13 @@ func boost_zone(delta):
 		boost_zone_velocity = boost_zone_forward * boost_zone_speed
 		move_core_frame(boost_zone_velocity,delta)
 		
-
+func self_rotate(delta):
+	var a = get_core_frame_rotation()
+	var b = Quat(Basis(get_core_frame_rotation()) * Basis(Vector3(0,1,0), PI * 1.5))
+	set_core_frame_rotation(a.slerp(b,delta * SELF_ROTATE_SPEED ))
+	
+	
+	
 #Change character's velocity in boost zone
 #func boost_zone(delta,boost_zone_forward):
 	#var boost_zone_object = get_node("/root/BoostAreaVariables")
