@@ -1,21 +1,21 @@
 extends Area
 
-var minor_collectibles = 0
-var UI_status_label
-var collectables_label
-var timer
-var addscore
+#var minor_collectibles = 0
+#var UI_status_label
+#var collectables_label
+#var timer
+#var addscore
 #enum stamp_type {blue = 0, green = 0, yellow = 0, red = 0}
 var global
 
 func _ready():
-	minor_collectibles = 0
-	UI_status_label = $HUD/Panel/Label
-	collectables_label = $HUD/Collectables/Label
+	#minor_collectibles = 0
+	#UI_status_label = $HUD/Panel/Label
+	#collectables_label = $HUD/Collectables/Label
 	global = get_node("/root/Globals")
-	$HUD/coin_anim.visible = false
-	timer = 0
-	addscore = 0
+	#$HUD/coin_anim.visible = false
+	#timer = 0
+	#addscore = 0
 
 func _physics_process(delta):
 	#process_UI(delta)
@@ -33,9 +33,9 @@ func add_score(value):
 	global.addscore = value
 	#minor_collectibles += value
 
-func process_UI(delta):
+#func process_UI(delta):
 	#UI_status_label.text = "Minor Collectibles:\n" + str(minor_collectibles)
-	collectables_label.text = str(minor_collectibles)
+	#collectables_label.text = str(minor_collectibles)
 
 func collect_stamp(stamp_station_type):
 	global.stamp_type[stamp_station_type] = 1

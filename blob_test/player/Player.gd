@@ -31,6 +31,7 @@ var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.15
 var squash = false
 var squash_velocity : Vector3
+var spin = false
 
 
 # Called when the node enters the scene tree for the first time.
