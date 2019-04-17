@@ -8,6 +8,7 @@ const MOTION_INTERPOLATE_SPEED = 10
 const CAMERA_INTERPOLATE_SPEED = 10
 const GROUND_RAY_LENGTH = 0.6
 const JUMP_SPEED = 15
+const SPIN_JUMP_SPEED = 20
 const CAMERA_ROTATION_SPEED = 0.01
 const CAMERA_X_ROT_MIN = -20
 const CAMERA_X_ROT_MAX = 45
@@ -72,7 +73,10 @@ func _commands_process(commands):
 	
 		# change the y velocity to make that player jump
 		if jump_started:
-			move_velocity.y = JUMP_SPEED
+			if spin:
+				move_velocity.y = SPIN_JUMP_SPEED
+			else:
+				move_velocity.y = JUMP_SPEED
 		#change the y velocity when player is spinning and falling
 		if spin && move_velocity.y < 0:
 			move_velocity.y /= 4
