@@ -12,6 +12,7 @@ const SPIN_JUMP_SPEED = 20
 const CAMERA_ROTATION_SPEED = 0.01
 const CAMERA_X_ROT_MIN = -20
 const CAMERA_X_ROT_MAX = 45
+const SELF_ROTATE_SPEED = 1
 var is_grounded = false
 var jump_started = false
 var boost_zone = false
@@ -53,6 +54,7 @@ func _physics_process(delta):
 	joypad_input(delta)
 	movement_and_jump(delta)
 	boost_zone(delta)
+
 	#boost_zone(delta)
 
 
@@ -87,7 +89,7 @@ func _commands_process(commands):
 		# set the desired velocity of the core
 		move_core_frame(move_velocity, delta)	
 	if squash:
-		print(squash_velocity)
+		#print(squash_velocity)
 		var extend_particle = get_group_origin_particle("Extend")
 		var other_particle  = get_group_origin_particle("Core")
 		if extend_particle != -1:
@@ -201,6 +203,8 @@ func boost_zone(delta):
 	if boost_zone_entry:
 		boost_zone_velocity = boost_zone_forward * boost_zone_speed
 		move_core_frame(boost_zone_velocity,delta)
+		
+
 #Change character's velocity in boost zone
 #func boost_zone(delta,boost_zone_forward):
 	#var boost_zone_object = get_node("/root/BoostAreaVariables")
