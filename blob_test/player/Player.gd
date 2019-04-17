@@ -1,8 +1,5 @@
 extends ParticleCharacter
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 var movement_speed = 2
 var motion = Vector2()
@@ -33,6 +30,8 @@ const JOYPAD_DEADZONE = 0.15
 var squash = false
 var squash_velocity : Vector3
 var spin = false
+var spin_timer
+var spin_time = 30
 
 
 # Called when the node enters the scene tree for the first time.
@@ -77,7 +76,9 @@ func _commands_process(commands):
 		# change the y velocity to make that player jump
 		if jump_started:
 			move_velocity.y = JUMP_SPEED
-	
+		#change the y velocity when player is spinning and falling
+		if spin && move_velocity.y < 0:
+			move_velocity.y /= 4
 		#rotate the character relative to the camera
 		rotatePlayerToCamera(delta)
 		#move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
@@ -129,7 +130,16 @@ func movement_and_jump(delta):
 			squash_velocity += Vector3(0,1,0).normalized() * movement_speed * delta
 	else:
 		squash_velocity = Vector3(0,1,0).normalized()
-		squash = false	
+		squash = false
+	#Press R to spin, spin state will last 30 seconds
+	if Input.is_action_just_pressed("spin") && !spin:
+		spin = true
+		spin_timer = 0
+	if spin:
+		#print("Spin!")
+		spin_timer += delta
+		if spin_timer >= spin_time:
+			spin = false
 
 
 func _input(event):

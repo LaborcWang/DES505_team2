@@ -54,7 +54,7 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			mouse_visible = true
 			get_tree().paused = true
-			get_node("../Player").movement_speed = 0
+			get_node("../Player/Player").movement_speed = 0
 			$Pause.show()
 			#$Pause/WindowDialog.popup(Rect2(420, 120, 200, 64))
 	if Input.is_key_pressed(KEY_ENTER):
@@ -88,7 +88,7 @@ func resume():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_visible = false
 	get_tree().paused = false
-	get_node("../Player").movement_speed = 2
+	get_node("../Player/Player").movement_speed = 2
 	$Pause.hide()
 
 func quit():
@@ -105,7 +105,7 @@ func map2_show():
 	map_show = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = true
-	get_node("../Player").movement_speed = 0
+	get_node("../Player/Player").movement_speed = 0
 	map_close_time = 0
 
 func map2_close():
@@ -114,7 +114,7 @@ func map2_close():
 	map_show = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
-	get_node("../Player").movement_speed = 2
+	get_node("../Player/Player").movement_speed = 2
 	map_show_time = 0
 
 func stamp_process():
