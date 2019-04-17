@@ -17,7 +17,7 @@ const CAMERA_X_ROT_MAX = 45
 var is_grounded = false
 var jump_started = false
 var boost_zone = false
-var boost_zone_speed = 15
+var boost_zone_speed = 30
 var boost_zone_forward: Vector3
 var boost_zone_entry : bool
 var boost_zone_exit : bool

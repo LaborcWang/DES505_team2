@@ -216,7 +216,7 @@ tracks/1/keys = {
 }
 
 [node name="Player" type="ParticleCharacter"]
-transform = Transform( 1, -4.65661e-10, -9.31323e-10, 0, 1, 2.98023e-08, 0, 2.98023e-08, 1, 0, -1.19209e-07, 0 )
+transform = Transform( 0.988699, -4.92819e-09, -0.149915, -3.60822e-16, 1, 2.98023e-08, 0.149915, 2.93957e-08, 0.988699, 0, -1.19209e-07, 0 )
 particle_body_model = SubResource( 1 )
 group_count = 3
 group_0/name = "Core"
@@ -260,7 +260,7 @@ material/0 = null
 transform = Transform( 0.999936, 0.00548876, -0.0098825, -3.36898e-10, 0.874214, 0.48554, 0.0113044, -0.485509, 0.874158, -0.0174395, 2.35228, 3.27653 )
 
 [node name="Area" type="Area" parent="."]
-transform = Transform( 1, -4.65661e-10, -9.31323e-10, 0, 1, 2.98023e-08, 0, 2.98023e-08, 1, -0.027875, 0.260849, 7.26398e-05 )
+transform = Transform( 0.988699, -4.92819e-09, -0.149915, -3.60822e-16, 1, 2.98023e-08, 0.149915, 2.93957e-08, 0.988699, -0.0275709, 0.260849, -0.00410705 )
 script = ExtResource( 5 )
 
 [node name="Core" type="CollisionShape" parent="Area"]

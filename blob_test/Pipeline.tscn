@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://level/slalomslopeexport.obj" type="PackedScene" id=2]
+[ext_resource path="res://BoostArea/Boost.tscn" type="PackedScene" id=3]
+
+[node name="Pipeline" type="Spatial"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, -4.65661e-10, -9.31323e-10, 0, 1, 2.98023e-08, 0, 2.98023e-08, 1, -18, 9.32671, -1.6357 )
+
+[node name="Scene Root" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 22, 9 )
+
+[node name="BoostZone" parent="Scene Root" instance=ExtResource( 3 )]
+transform = Transform( 4.39132e-09, 1.25636e-15, -0.117879, 0, 0.3025, 3.22407e-15, 0.20716, -8.77357e-23, 3.08692e-09, -8.37637, -10.8521, -10.603 )
+
+[node name="BoostZone2" parent="Scene Root" instance=ExtResource( 3 )]
+transform = Transform( 2.58062e-08, -0.3025, -1.32241e-08, 0, -1.32227e-08, 0.302532, -0.341814, -2.28381e-08, -9.98391e-16, -12.0652, -5.11246, -10.603 )
+
