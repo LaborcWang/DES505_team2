@@ -263,7 +263,7 @@ mesh = ExtResource( 4 )
 material/0 = null
 
 [node name="Area" type="Area" parent="Player"]
-transform = Transform( -0.897243, 0, 0.441537, 0, 1, 0, -0.441537, 0, -0.897243, 0.0250427, 0.260849, 0.0122427 )
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.26332e-05, 0.260849, 0.027875 )
 script = ExtResource( 5 )
 
 [node name="Core" type="CollisionShape" parent="Player/Area"]

@@ -53,8 +53,7 @@ func _physics_process(delta):
 	joypad_input(delta)
 	movement_and_jump(delta)
 	boost_zone(delta)
-	if(Input.is_action_pressed("self_rotate")):
-		rotate_self(delta)
+
 	#boost_zone(delta)
 
 
@@ -201,8 +200,7 @@ func boost_zone(delta):
 		boost_zone_velocity = boost_zone_forward * boost_zone_speed
 		move_core_frame(boost_zone_velocity,delta)
 		
-func rotate_self(delta):
-	set_core_frame_rotation(
+
 #Change character's velocity in boost zone
 #func boost_zone(delta,boost_zone_forward):
 	#var boost_zone_object = get_node("/root/BoostAreaVariables")
