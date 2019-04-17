@@ -78,7 +78,8 @@ func _commands_process(commands):
 			move_velocity.y /= 4
 		#rotate the character relative to the camera
 		rotatePlayerToCamera(delta)
-		move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
+		#move_velocity = $camera_base.global_transform.basis.xform(move_velocity)
+		move_velocity = get_node("../camera_base").global_transform.basis.xform(move_velocity)
 		# set the desired velocity of the core
 		move_core_frame(move_velocity, delta)	
 	if squash:
@@ -94,7 +95,8 @@ func _commands_process(commands):
 	
 	# this makes the camera follow the player
 	camera_lookat = camera_lookat.linear_interpolate( get_core_frame_position(), CAMERA_INTERPOLATE_SPEED * delta)
-	$camera_base.global_transform.origin = camera_lookat
+	#$camera_base.global_transform.origin = camera_lookat
+	get_node("../camera_base").global_transform.origin = camera_lookat
 
 
 func movement_and_jump(delta):
@@ -143,10 +145,13 @@ func _input(event):
 
 
 func camera_roate(x, y):
-	$camera_base.rotate_y( -x * CAMERA_ROTATION_SPEED )
-	$camera_base.orthonormalize() # after relative transforms, camera needs to be renormalized
+	#$camera_base.rotate_y( -x * CAMERA_ROTATION_SPEED )
+	get_node("../camera_base").rotate_y( -x * CAMERA_ROTATION_SPEED )
+	#$camera_base.orthonormalize() # after relative transforms, camera needs to be renormalized
+	get_node("../camera_base").orthonormalize()
 	camera_x_rot = clamp(camera_x_rot + y * CAMERA_ROTATION_SPEED,deg2rad(CAMERA_X_ROT_MIN), deg2rad(CAMERA_X_ROT_MAX) )
-	$camera_base/camera_rot.rotation.x =  camera_x_rot
+	#$camera_base/camera_rot.rotation.x =  camera_x_rot
+	get_node("../camera_base/camera_rot").rotation.x =  camera_x_rot
 
 
 func joypad_input(delta):
@@ -162,8 +167,10 @@ func joypad_input(delta):
 
 
 func rotatePlayerToCamera(delta):
-	var cam_z = - $camera_base/camera_rot/Camera.global_transform.basis.z
-	var cam_x = $camera_base/camera_rot/Camera.global_transform.basis.x
+	#var cam_z = - $camera_base/camera_rot/Camera.global_transform.basis.z
+	var cam_z = - get_node("../camera_base/camera_rot/Camera").global_transform.basis.z
+	#var cam_x = $camera_base/camera_rot/Camera.global_transform.basis.x
+	var cam_x = get_node("../camera_base/camera_rot/Camera").global_transform.basis.x
 	
 	cam_z.y=0
 	cam_z = cam_z.normalized()
