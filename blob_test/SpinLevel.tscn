@@ -11,7 +11,7 @@
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 26.1571, 0.620267, 26.0441 )
 
-[node name="Scene Root" index="0" instance=ExtResource( 1 )]
+[node name="Scene Root" instance=ExtResource( 1 )]
 
 [node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76073, 0.79287, -20.2039 )

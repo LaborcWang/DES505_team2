@@ -18,8 +18,8 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
-	print(is_heat)
-	if (Input.is_action_pressed("melt") && not $Player.jump_started) || is_heat:
+	#print(is_heat)
+	if (Input.is_action_pressed("melt") && not $PlayerSceneRoot/Player.jump_started) || is_heat:
 		#$Player.core_enabled = false
 		#$Player/Area/Core.scale.x = 0.5
 		#$Player/Area/Core.scale.y = 0.5
