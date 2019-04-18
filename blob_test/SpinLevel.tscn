@@ -15,12 +15,15 @@ extents = Vector3( 26.1571, 0.620267, 26.0441 )
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 60, 8, 2 )
 
-[node name="Scene Root" index="0" instance=ExtResource( 1 )]
+[node name="Scene Root" instance=ExtResource( 1 )]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.76073, 0.79287, -20.2039 )
+[node name="StartPosition" type="Position3D" parent="." index="0"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18585, 1.10245, -20.7972 )
 
-[node name="MeshInstance" parent="." index="1"]
+[node name="Player" parent="." index="1" instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16356, 0.79287, -20.2039 )
+
+[node name="MeshInstance" parent="." index="2"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27666, -43.2291 )
 material/0 = ExtResource( 3 )
@@ -44,14 +47,14 @@ material/17 = ExtResource( 4 )
 material/18 = ExtResource( 3 )
 material/19 = ExtResource( 5 )
 
-[node name="Slow_down_area" type="Area" parent="." index="2"]
+[node name="Slow_down_area" type="Area" parent="." index="3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.533992, 0.0745277 )
 script = ExtResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Slow_down_area" index="0"]
 shape = SubResource( 1 )
 
-[node name="Stars" type="Spatial" parent="." index="3"]
+[node name="Stars" type="Spatial" parent="." index="4"]
 editor/display_folded = true
 
 [node name="Star" parent="Stars" index="0" instance=ExtResource( 7 )]
@@ -75,7 +78,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0151, 1.63305, -16.3421 )
 [node name="Star6" parent="Stars" index="6" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0151, 2.17251, -14.5821 )
 
-[node name="Blockers" type="Spatial" parent="." index="4"]
+[node name="Blockers" type="Spatial" parent="." index="5"]
 visible = false
 
 [node name="PrototypeMesh" type="MeshInstance" parent="Blockers" index="0"]
