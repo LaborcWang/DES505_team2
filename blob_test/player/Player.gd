@@ -60,6 +60,7 @@ func _physics_process(delta):
 	boost_zone(delta)
 	#boost_zone(delta)
 
+#spin machanic
 func spin_last_expect(input:int) -> int:
 	var expect:int
 	expect = input - 1
@@ -69,19 +70,19 @@ func spin_last_expect(input:int) -> int:
 	
 
 func spin_input_test(event):
+	print(spin_input_record)
 	if spin:
-		spin_input_record.clear()
 		return
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_D:
-			current_input = 0
+			current_input = spin_input_map["D"]
 		elif event.pressed and event.scancode == KEY_W:
-			current_input = 1
+			current_input = spin_input_map["W"]
 		elif event.pressed and event.scancode == KEY_A:
-			current_input = 2
+			current_input = spin_input_map["A"]
 		elif event.pressed and event.scancode == KEY_S:
-			current_input = 3
-	print(current_input)
+			current_input = spin_input_map["S"]
+	#print(current_input)
 	if current_input != -1:
 		if !spin_input_record.empty():
 			if spin_input_record.back() == spin_last_expect(current_input):
@@ -189,6 +190,7 @@ func movement_and_jump(delta):
 		spin_timer += delta
 		if spin_timer >= spin_time:
 			spin = false
+			spin_timer = 0
 	if spin:
 		self_rotate(-delta)
 
