@@ -189,7 +189,6 @@ func rotatePlayerToCamera(delta):
 	if (target.length() > 0.001):
 		var q_from = get_core_frame_rotation()
 		var q_to = Quat(Transform().looking_at(target,Vector3(0,1,0)).basis)
-
 		if not spin:	# interpolate current rotation with desired one
 			set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
 
