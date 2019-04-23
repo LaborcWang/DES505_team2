@@ -30,6 +30,7 @@ var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.15
 var squash = false
 var squash_velocity : Vector3
+var melt = false
 var spin = false
 var spin_timer:float
 var spin_time = 15
@@ -58,7 +59,22 @@ func _physics_process(delta):
 	joypad_input(delta)
 	movement_and_jump(delta)
 	boost_zone(delta)
+	set_animation()
 	#boost_zone(delta)
+
+#animation
+func set_animation():
+	var motion_input_length = motion.length()
+	if melt:
+		$face_anim_tree["parameters/State/current"] = 3 # shocked
+	else:
+		if is_grounded:
+			if motion_input_length > 0.3:
+				$face_anim_tree["parameters/State/current"] = 1 # move
+			else:
+				$face_anim_tree["parameters/State/current"] = 0 # idle
+		else:
+			$face_anim_tree["parameters/State/current"] = 2 # in_air
 
 #spin machanic
 func spin_last_expect(input:int) -> int:
@@ -150,6 +166,7 @@ func _commands_process(commands):
 	camera_lookat = camera_lookat.linear_interpolate( get_core_frame_position(), CAMERA_INTERPOLATE_SPEED * delta)
 	#$camera_base.global_transform.origin = camera_lookat
 	get_node("../camera_base").global_transform.origin = camera_lookat
+	
 
 
 func movement_and_jump(delta):

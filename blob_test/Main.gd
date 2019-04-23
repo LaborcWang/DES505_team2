@@ -11,11 +11,6 @@ var is_heat
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	is_heat = false
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
 
 func _physics_process(delta):
 	#print(is_heat)
@@ -39,8 +34,10 @@ func _physics_process(delta):
 
 func heat():
 	is_heat = true
+	$PlayerSceneRoot/Player.melt = true
 	#$Player.core_enabled = false
 
 func cool():
 	is_heat = false
+	$PlayerSceneRoot/Player.melt = false
 	#$Player.core_enabled = true
