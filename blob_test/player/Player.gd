@@ -30,10 +30,14 @@ var JOYPAD_SENSITIVITY = 2
 const JOYPAD_DEADZONE = 0.15
 var squash = false
 var squash_velocity : Vector3
+var melt = false
 var spin = false
-var spin_timer
-var spin_time = 30
-
+var spin_timer:float
+var spin_time = 15
+var spin_input_map = {"D":0, "W":1, "A":2, "S":3}
+var spin_input_record : Array
+var current_input = -1
+var spin_input_size = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,6 +51,7 @@ func _ready():
 	audio_Squeezing.stop()
 	audio_Moving.stop()
 	audio_Landing.stop()
+	spin_input_record = [null]
 	#pass
 
 func _physics_process(delta):
@@ -54,8 +59,67 @@ func _physics_process(delta):
 	joypad_input(delta)
 	movement_and_jump(delta)
 	boost_zone(delta)
+	set_animation()
 	#boost_zone(delta)
 
+#animation
+func set_animation():
+	var motion_input_length = motion.length()
+	if melt:
+		$face_anim_tree["parameters/State/current"] = 3 # shocked
+	else:
+		if is_grounded:
+			if motion_input_length > 0.3:
+				$face_anim_tree["parameters/State/current"] = 1 # move
+			else:
+				$face_anim_tree["parameters/State/current"] = 0 # idle
+		else:
+			$face_anim_tree["parameters/State/current"] = 2 # in_air
+
+#spin machanic
+func spin_last_expect(input:int) -> int:
+	var expect:int
+	expect = input - 1
+	if expect < 0:
+		expect = 3
+	return expect
+	
+
+func spin_input_test(event):
+	print(spin_input_record)
+	if spin:
+		return
+	if event is InputEventKey:
+		if event.pressed and event.scancode == KEY_D:
+			current_input = spin_input_map["D"]
+		elif event.pressed and event.scancode == KEY_W:
+			current_input = spin_input_map["W"]
+		elif event.pressed and event.scancode == KEY_A:
+			current_input = spin_input_map["A"]
+		elif event.pressed and event.scancode == KEY_S:
+			current_input = spin_input_map["S"]
+	#print(current_input)
+	if current_input != -1:
+		if !spin_input_record.empty():
+			if spin_input_record.back() == spin_last_expect(current_input):
+				spin_input_size += 1
+				spin_input_record.resize(spin_input_size)
+				spin_input_record[spin_input_size-1] = current_input
+			elif spin_input_record.back() == current_input:
+				pass
+			else:
+				spin_input_record.clear()
+				spin_input_size = spin_input_record.size()
+		else:
+			if current_input == 0:
+				spin_input_size = 1
+				spin_input_record.resize(spin_input_size)
+				spin_input_record[spin_input_size-1] = current_input
+	if spin_input_record.size() == 12:
+		spin_input_record.clear()
+		spin_input_size = spin_input_record.size()
+		spin = true
+	current_input = -1
 
 #Control the parapmeter of particle group
 func _commands_process(commands):
@@ -102,6 +166,7 @@ func _commands_process(commands):
 	camera_lookat = camera_lookat.linear_interpolate( get_core_frame_position(), CAMERA_INTERPOLATE_SPEED * delta)
 	#$camera_base.global_transform.origin = camera_lookat
 	get_node("../camera_base").global_transform.origin = camera_lookat
+	
 
 
 func movement_and_jump(delta):
@@ -142,13 +207,15 @@ func movement_and_jump(delta):
 		spin_timer += delta
 		if spin_timer >= spin_time:
 			spin = false
+			spin_timer = 0
 	if spin:
-		self_rotate(delta)
+		self_rotate(-delta)
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		camera_roate(event.relative.x,event.relative.y)
+	spin_input_test(event)
 
 
 func camera_roate(x, y):
@@ -189,6 +256,7 @@ func rotatePlayerToCamera(delta):
 	if (target.length() > 0.001):
 		var q_from = get_core_frame_rotation()
 		var q_to = Quat(Transform().looking_at(target,Vector3(0,1,0)).basis)
+
 		if not spin:	# interpolate current rotation with desired one
 			set_core_frame_rotation(q_from.slerp(q_to,delta*ROTATION_INTERPOLATE_SPEED))
 
