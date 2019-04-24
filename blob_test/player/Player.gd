@@ -65,7 +65,7 @@ func _physics_process(delta):
 #animation
 func set_animation():
 	var motion_input_length = motion.length()
-	if melt:
+	if melt or boost_zone_entry:
 		$face_anim_tree["parameters/State/current"] = 3 # shocked
 	else:
 		if is_grounded:
@@ -75,6 +75,8 @@ func set_animation():
 				$face_anim_tree["parameters/State/current"] = 0 # idle
 		else:
 			$face_anim_tree["parameters/State/current"] = 2 # in_air
+	
+		
 
 #spin machanic
 func spin_last_expect(input:int) -> int:
