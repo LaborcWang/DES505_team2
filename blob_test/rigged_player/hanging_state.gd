@@ -106,8 +106,8 @@ func setup_anim_blends():
 
 func setup_up_stiffness():
 		rigged_player.set_group_cluster_stiffness("Global", 0.3)
-		rigged_player.set_group_cluster_stiffness("arm_left", 0.05)
-		rigged_player.set_group_cluster_stiffness("arm_right", 0.05)
+		rigged_player.set_group_cluster_stiffness("arm_left", 0.1)
+		rigged_player.set_group_cluster_stiffness("arm_right", 0.1)
 		
 func restore_anim_blends():
 	rigged_player.set_group_anim_blend(-1, 1)
@@ -128,7 +128,8 @@ func swing(delta):	#swing acceleration is calculated based on the stretched leng
 	var swing_acc = SWING_ACCELERATION
 	
 	var grab_pole_position = grab_pole.global_transform.origin
-	var swing_direction = Vector3(1, 0, 0)
+	var swing_direction = Vector3(1, 0, 1) * grab_pole.transform.basis.x
+	
 	
 	var player_body_position : Vector3 = rigged_player.get_node("particle_groups/inner_body_area").global_transform.origin
 	var player_swing_direction : Vector3 = player_body_position - grab_pole_position
@@ -139,10 +140,15 @@ func swing(delta):	#swing acceleration is calculated based on the stretched leng
 	#print("x: "+String(player_body_position.x)+" "+String(projected_swing_distance))
 	
 
-	var horizontal_input_axis = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	#var horizontal_input_axis = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	var swing_input = Vector3()
+	swing_input.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	swing_input.z = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
+	swing_input.y = 0
 	
 	if abs(projected_swing_distance) < SWING_DISTANCE_MAX:
-		rigged_player.swing_acceleration = swing_direction*horizontal_input_axis*swing_acc
+		#rigged_player.swing_acceleration = swing_direction*horizontal_input_axis*swing_acc
+		rigged_player.swing_acceleration = swing_direction*swing_direction.dot(swing_input)*swing_acc
 	else:
 		rigged_player.swing_acceleration = Vector3()
 		
