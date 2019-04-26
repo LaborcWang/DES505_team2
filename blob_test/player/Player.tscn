@@ -296,7 +296,7 @@ animation = "face_shocked-loop"
 animation = "in_air-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=17]
-graph_offset = Vector2( -7, -3 )
+graph_offset = Vector2( 0, 98.5 )
 nodes/State/node = SubResource( 12 )
 nodes/State/position = Vector2( 460, 100 )
 nodes/face_idle_anim/node = SubResource( 13 )
@@ -321,6 +321,7 @@ transform = Transform( 0.988699, -4.92819e-09, -0.149915, -3.60822e-16, 1, 2.980
 transform = Transform( 0.999936, 0.00548876, -0.0098825, -3.36898e-10, 0.874214, 0.48554, 0.0113044, -0.485509, 0.874158, -0.0174395, 2.35228, 3.27653 )
 
 [node name="Player" type="ParticleCharacter" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87159e-05, -1.19209e-07, -5.04592e-14 )
 particle_body_model = SubResource( 1 )
 monitorable = true
@@ -352,10 +353,10 @@ material/0 = null
 
 [node name="BodyMesh" type="ParticleBodyMeshInstance" parent="Player"]
 mesh = ExtResource( 3 )
-blend_shapes/E.Blink = 0.3
-"blend_shapes/M.Big smile" = 0.56
-"blend_shapes/M.Oh face" = 0.54
-blend_shapes/M.Smile = 0.54
+blend_shapes/E.Blink = 0.0
+"blend_shapes/M.Big smile" = 0.0
+"blend_shapes/M.Oh face" = 0.673205
+blend_shapes/M.Smile = 0.0
 material/0 = ExtResource( 4 )
 
 [node name="EyesMesh" type="ParticleBodyMeshInstance" parent="Player"]
@@ -363,7 +364,7 @@ mesh = ExtResource( 5 )
 material/0 = SubResource( 2 )
 
 [node name="Area" type="Area" parent="Player"]
-transform = Transform( 0.988699, -4.92819e-09, -0.149915, -3.60822e-16, 1, 2.98023e-08, 0.149915, 2.93957e-08, 0.988699, -0.0275709, 0.260849, -0.00410706 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0278563, 0.260849, 7.2632e-05 )
 script = ExtResource( 7 )
 
 [node name="Core" type="CollisionShape" parent="Player/Area"]
@@ -460,5 +461,5 @@ anims/in_air-loop = SubResource( 11 )
 tree_root = SubResource( 17 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/State/current = 0
+parameters/State/current = 3
 
