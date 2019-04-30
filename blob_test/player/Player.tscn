@@ -296,7 +296,6 @@ animation = "face_shocked-loop"
 animation = "in_air-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=16]
-graph_offset = Vector2( -7, 90 )
 nodes/State/node = SubResource( 11 )
 nodes/State/position = Vector2( 460, 100 )
 nodes/face_idle_anim/node = SubResource( 12 )
