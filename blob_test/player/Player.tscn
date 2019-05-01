@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/blob_collision_mesh.obj" type="ArrayMesh" id=2]
-[ext_resource path="res://player/body.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://player/body2.tres" type="ArrayMesh" id=3]
 [ext_resource path="res://player/body.material" type="Material" id=4]
 [ext_resource path="res://player/Character_blob_withBlends_eyes.obj" type="ArrayMesh" id=5]
 [ext_resource path="res://player/Eye Texture.png" type="Texture" id=6]
@@ -296,6 +296,7 @@ animation = "face_shocked-loop"
 animation = "in_air-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=17]
+graph_offset = Vector2( 0, 190.5 )
 nodes/State/node = SubResource( 12 )
 nodes/State/position = Vector2( 460, 100 )
 nodes/face_idle_anim/node = SubResource( 13 )
@@ -350,9 +351,10 @@ material/0 = null
 
 [node name="BodyMesh" type="ParticleBodyMeshInstance" parent="Player"]
 mesh = ExtResource( 3 )
-blend_shapes/E.Blink = 0.3
+blend_shapes/E.Blink = 0.14
 "blend_shapes/M.Big smile" = 0.56
 "blend_shapes/M.Oh face" = 0.54
+blend_shapes/M.Sface = 0.0
 blend_shapes/M.Smile = 0.54
 material/0 = ExtResource( 4 )
 
@@ -458,5 +460,5 @@ anims/in_air-loop = SubResource( 11 )
 tree_root = SubResource( 17 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/State/current = 0
+parameters/State/current = 2
 

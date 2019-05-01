@@ -10,11 +10,13 @@
 
 [node name="rigged_player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.840147, 1.09472, 0.571733 )
-core_enabled = false
 
 [node name="grab_pole" parent="." instance=ExtResource( 3 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.16929, 2.59594, 0.575543 )
 
 [node name="grab_pole2" parent="." instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94335, 2.59667, 0.95856 )
+
+[node name="grab_pole3" parent="." instance=ExtResource( 3 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.958174, 2.3828, 2.46451 )
 
