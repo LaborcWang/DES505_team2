@@ -33,11 +33,14 @@ var squash_velocity : Vector3
 var melt = false
 var spin = false
 var spin_timer:float
-var spin_time = 15
+var spin_time = 10
 var spin_input_map = {"D":0, "W":1, "A":2, "S":3}
 var spin_input_record : Array
 var current_input = -1
 var spin_input_size = 0
+var spin_cool_down = false
+var spin_cool_down_time = 5.0
+var spin_cool_down_timer:float
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -59,13 +62,23 @@ func _physics_process(delta):
 	joypad_input(delta)
 	movement_and_jump(delta)
 	boost_zone(delta)
-	set_animation()
+	set_animation(delta)
 	#boost_zone(delta)
 
 #animation
-func set_animation():
+func set_animation(delta):
+	if spin:
+		spin_cool_down = true
+	if !spin and spin_cool_down:
+		spin_cool_down_timer += delta
+		if spin_cool_down_timer >= spin_cool_down_time:
+			spin_cool_down_timer = 0
+			spin_cool_down = false
+	
 	var motion_input_length = motion.length()
-	if melt or boost_zone_entry:
+	if spin_cool_down:
+		$face_anim_tree["parameters/State/current"] = 4
+	elif melt or boost_zone_entry:
 		$face_anim_tree["parameters/State/current"] = 3 # shocked
 	else:
 		if is_grounded:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/blob_collision_mesh.obj" type="ArrayMesh" id=2]
@@ -41,6 +41,7 @@ extents = Vector3( 0.448338, 0.156922, 0.516206 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "Face_Spin_Loop"
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyMesh:blend_shapes/M.Sface")
 tracks/0/interp = 1
@@ -335,7 +336,7 @@ tracks/3/keys = {
 }
 
 [sub_resource type="AnimationNodeTransition" id=13]
-input_count = 4
+input_count = 5
 xfade_time = 0.1
 input_0/name = "idle"
 input_0/auto_advance = false
@@ -345,6 +346,8 @@ input_2/name = "in_air"
 input_2/auto_advance = false
 input_3/name = "shocked"
 input_3/auto_advance = false
+input_4/name = "spinning"
+input_4/auto_advance = false
 
 [sub_resource type="AnimationNodeAnimation" id=14]
 animation = "face_idle-loop"
@@ -355,11 +358,14 @@ animation = "face_move-loop"
 [sub_resource type="AnimationNodeAnimation" id=16]
 animation = "face_shocked-loop"
 
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Face_Spin_Loop"
+
 [sub_resource type="AnimationNodeAnimation" id=17]
 animation = "in_air-loop"
 
 [sub_resource type="AnimationNodeBlendTree" id=18]
-graph_offset = Vector2( 0, 63.5 )
+graph_offset = Vector2( 0, 254 )
 nodes/State/node = SubResource( 13 )
 nodes/State/position = Vector2( 460, 100 )
 nodes/face_idle_anim/node = SubResource( 14 )
@@ -368,10 +374,12 @@ nodes/face_move-anim/node = SubResource( 15 )
 nodes/face_move-anim/position = Vector2( 120, 180 )
 nodes/face_shocked-anim/node = SubResource( 16 )
 nodes/face_shocked-anim/position = Vector2( 80, 440 )
+nodes/face_spin_anim/node = SubResource( 19 )
+nodes/face_spin_anim/position = Vector2( 340, 440 )
 nodes/in_air_anim/node = SubResource( 17 )
 nodes/in_air_anim/position = Vector2( 120, 320 )
-nodes/output/position = Vector2( 660, 140 )
-node_connections = [ "State", 0, "face_idle_anim", "State", 1, "face_move-anim", "State", 2, "in_air_anim", "State", 3, "face_shocked-anim", "output", 0, "State" ]
+nodes/output/position = Vector2( 740, 120 )
+node_connections = [ "output", 0, "State", "State", 0, "face_idle_anim", "State", 1, "face_move-anim", "State", 2, "in_air_anim", "State", 3, "face_shocked-anim", "State", 4, "face_spin_anim" ]
 
 [node name="PlayerSceneRoot" type="Spatial"]
 
@@ -417,7 +425,7 @@ mesh = ExtResource( 3 )
 blend_shapes/E.Blink = 0.14
 "blend_shapes/M.Big smile" = 0.56
 "blend_shapes/M.Oh face" = 0.54
-blend_shapes/M.Sface = 1.0
+blend_shapes/M.Sface = 0.203333
 blend_shapes/M.Smile = 0.54
 material/0 = ExtResource( 4 )
 
