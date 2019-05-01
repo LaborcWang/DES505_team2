@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
 [ext_resource path="res://player/blob_collision_mesh.obj" type="ArrayMesh" id=2]
@@ -40,6 +40,69 @@ extents = Vector3( 0.490432, 0.64815, 0.536235 )
 extents = Vector3( 0.448338, 0.156922, 0.516206 )
 
 [sub_resource type="Animation" id=7]
+resource_name = "Face_Spin_Loop"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyMesh:blend_shapes/M.Sface")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.61, 0.0, 0.0, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BodyMesh:blend_shapes/E.Blink")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.58, 0.36, 0.14, 0.58 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BodyMesh:blend_shapes/M.Big smile")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.56 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("BodyMesh:blend_shapes/M.Oh face")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.54 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("BodyMesh:blend_shapes/M.Smile")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.54 ]
+}
+
+[sub_resource type="Animation" id=8]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Area/HUD/coin_anim:rect_scale")
@@ -66,7 +129,7 @@ tracks/1/keys = {
 "values": [ Vector2( 480, 230 ), Vector2( 480, 200 ), Vector2( 480, 230 ), Vector2( 341.401, 196.066 ), Vector2( 209.45, 148.837 ), Vector2( 105.2, 89.4183 ), Vector2( 63, 30 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 4.0
 loop = true
 tracks/0/type = "value"
@@ -118,7 +181,7 @@ tracks/3/keys = {
 "values": [ 0.54 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyMesh:blend_shapes/E.Blink")
@@ -169,7 +232,7 @@ tracks/3/keys = {
 "values": [ 0.54, 1.0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=11]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -221,7 +284,7 @@ tracks/3/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=12]
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyMesh:blend_shapes/E.Blink")
 tracks/0/interp = 1
@@ -271,7 +334,7 @@ tracks/3/keys = {
 "values": [ 0.54 ]
 }
 
-[sub_resource type="AnimationNodeTransition" id=12]
+[sub_resource type="AnimationNodeTransition" id=13]
 input_count = 4
 xfade_time = 0.1
 input_0/name = "idle"
@@ -283,29 +346,29 @@ input_2/auto_advance = false
 input_3/name = "shocked"
 input_3/auto_advance = false
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "face_idle-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "face_move-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=15]
+[sub_resource type="AnimationNodeAnimation" id=16]
 animation = "face_shocked-loop"
 
-[sub_resource type="AnimationNodeAnimation" id=16]
+[sub_resource type="AnimationNodeAnimation" id=17]
 animation = "in_air-loop"
 
-[sub_resource type="AnimationNodeBlendTree" id=17]
-graph_offset = Vector2( 0, 190.5 )
-nodes/State/node = SubResource( 12 )
+[sub_resource type="AnimationNodeBlendTree" id=18]
+graph_offset = Vector2( 0, 63.5 )
+nodes/State/node = SubResource( 13 )
 nodes/State/position = Vector2( 460, 100 )
-nodes/face_idle_anim/node = SubResource( 13 )
+nodes/face_idle_anim/node = SubResource( 14 )
 nodes/face_idle_anim/position = Vector2( 160, 60 )
-nodes/face_move-anim/node = SubResource( 14 )
+nodes/face_move-anim/node = SubResource( 15 )
 nodes/face_move-anim/position = Vector2( 120, 180 )
-nodes/face_shocked-anim/node = SubResource( 15 )
+nodes/face_shocked-anim/node = SubResource( 16 )
 nodes/face_shocked-anim/position = Vector2( 80, 440 )
-nodes/in_air_anim/node = SubResource( 16 )
+nodes/in_air_anim/node = SubResource( 17 )
 nodes/in_air_anim/position = Vector2( 120, 320 )
 nodes/output/position = Vector2( 660, 140 )
 node_connections = [ "State", 0, "face_idle_anim", "State", 1, "face_move-anim", "State", 2, "in_air_anim", "State", 3, "face_shocked-anim", "output", 0, "State" ]
@@ -354,7 +417,7 @@ mesh = ExtResource( 3 )
 blend_shapes/E.Blink = 0.14
 "blend_shapes/M.Big smile" = 0.56
 "blend_shapes/M.Oh face" = 0.54
-blend_shapes/M.Sface = 0.0
+blend_shapes/M.Sface = 1.0
 blend_shapes/M.Smile = 0.54
 material/0 = ExtResource( 4 )
 
@@ -416,11 +479,11 @@ custom_fonts/font = SubResource( 4 )
 text = "0"
 
 [node name="coin_anim" type="TextureRect" parent="Player/Area/HUD"]
-margin_left = 480.0
-margin_top = 230.0
-margin_right = 1030.0
-margin_bottom = 780.0
-rect_scale = Vector2( 0.1, 0.1 )
+margin_left = 174.7
+margin_top = 129.031
+margin_right = 724.7
+margin_bottom = 679.031
+rect_scale = Vector2( 0.0708333, 0.0708333 )
 texture = ExtResource( 8 )
 
 [node name="AreaAll" type="Area" parent="Player"]
@@ -450,14 +513,15 @@ stream = ExtResource( 10 )
 stream = ExtResource( 10 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
-anims/coin_animation = SubResource( 7 )
-anims/face_idle-loop = SubResource( 8 )
-anims/face_move-loop = SubResource( 9 )
-anims/face_shocked-loop = SubResource( 10 )
-anims/in_air-loop = SubResource( 11 )
+anims/Face_Spin_Loop = SubResource( 7 )
+anims/coin_animation = SubResource( 8 )
+anims/face_idle-loop = SubResource( 9 )
+anims/face_move-loop = SubResource( 10 )
+anims/face_shocked-loop = SubResource( 11 )
+anims/in_air-loop = SubResource( 12 )
 
 [node name="face_anim_tree" type="AnimationTree" parent="Player"]
-tree_root = SubResource( 17 )
+tree_root = SubResource( 18 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/State/current = 2
