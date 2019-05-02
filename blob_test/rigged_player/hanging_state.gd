@@ -128,6 +128,7 @@ func swing(delta):	#swing acceleration is calculated based on the stretched leng
 	var swing_acc = SWING_ACCELERATION
 	
 	var grab_pole_position = grab_pole.global_transform.origin
+	#Swing at x axis or z axis
 	var swing_direction = Vector3(1, 0, 1) * grab_pole.transform.basis.x
 	
 	
