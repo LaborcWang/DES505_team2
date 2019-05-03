@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
@@ -17,14 +17,16 @@
 [ext_resource path="res://Star/star.png" type="Texture" id=15]
 [ext_resource path="res://Marlboro.ttf" type="DynamicFontData" id=16]
 [ext_resource path="res://Final Level.tscn" type="PackedScene" id=17]
-[ext_resource path="res://level/rockpillarexportcolour.obj" type="PackedScene" id=18]
-[ext_resource path="res://Star/Star.tscn" type="PackedScene" id=19]
-[ext_resource path="res://stamp/Stamp_Station.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Spawn_Points.gd" type="Script" id=21]
-[ext_resource path="res://Wall.tscn" type="PackedScene" id=22]
-[ext_resource path="res://BoostArea/Boost.tscn" type="PackedScene" id=23]
-[ext_resource path="res://Heat&Cool_Area/Heat_Area.tscn" type="PackedScene" id=24]
-[ext_resource path="res://Heat&Cool_Area/Cool_Area.tscn" type="PackedScene" id=25]
+[ext_resource path="res://prototype_mesh.gd" type="Script" id=18]
+[ext_resource path="res://Slow_down_area.gd" type="Script" id=19]
+[ext_resource path="res://level/rockpillarexportcolour.obj" type="PackedScene" id=20]
+[ext_resource path="res://Star/Star.tscn" type="PackedScene" id=21]
+[ext_resource path="res://stamp/Stamp_Station.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Spawn_Points.gd" type="Script" id=23]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=24]
+[ext_resource path="res://BoostArea/Boost.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Heat&Cool_Area/Heat_Area.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Heat&Cool_Area/Cool_Area.tscn" type="PackedScene" id=27]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 5 )
@@ -76,8 +78,19 @@ font_data = ExtResource( 7 )
 size = 32
 font_data = ExtResource( 16 )
 
-[sub_resource type="Animation" id=13]
-resource_name = "star_collect"
+[sub_resource type="CubeMesh" id=13]
+size = Vector3( 62, 20, 2 )
+
+[sub_resource type="CubeMesh" id=16]
+size = Vector3( 2, 40, 210 )
+
+[sub_resource type="CubeMesh" id=17]
+size = Vector3( 65, 30, 2 )
+
+[sub_resource type="BoxShape" id=14]
+extents = Vector3( 31.9172, 1, 30.9238 )
+
+[sub_resource type="Animation" id=15]
 length = 1.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI_Controller/HUD/star_anim:rect_position")
@@ -303,35 +316,65 @@ texture = ExtResource( 15 )
 [node name="Final level" parent="." instance=ExtResource( 17 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0153854, 1.19209e-07, 0.0104287 )
 
-[node name="Level" parent="." instance=ExtResource( 18 )]
+[node name="Air_Walls" type="Spatial" parent="Final level"]
+visible = false
+
+[node name="PrototypeMesh" type="MeshInstance" parent="Final level/Air_Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.206, -1.04647, 4.81287 )
+mesh = SubResource( 13 )
+material/0 = null
+script = ExtResource( 18 )
+
+[node name="PrototypeMesh2" type="MeshInstance" parent="Final level/Air_Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60992, 3.42268, 105.01 )
+mesh = SubResource( 16 )
+material/0 = null
+script = ExtResource( 18 )
+
+[node name="PrototypeMesh3" type="MeshInstance" parent="Final level/Air_Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2329, 0.270607, 204.082 )
+mesh = SubResource( 17 )
+material/0 = null
+script = ExtResource( 18 )
+
+[node name="Slow_down_area" type="Area" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.394, -11.8451, 113.818 )
+script = ExtResource( 19 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Slow_down_area"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6265, -0.62335, 5.03897 )
+shape = SubResource( 14 )
+
+[node name="Level" parent="." instance=ExtResource( 20 )]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0153854, 1.19209e-07, 0.0104287 )
 visible = false
 
-[node name="Star" parent="Level" instance=ExtResource( 19 )]
+[node name="Star" parent="Level" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.78661, 1.5, -0.122429 )
 visible = false
 
-[node name="Star2" parent="Level" instance=ExtResource( 19 )]
+[node name="Star2" parent="Level" instance=ExtResource( 21 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34408, 1.49214, 3.55279 )
 visible = false
 
-[node name="Stamp_Station2" parent="Level" instance=ExtResource( 20 )]
+[node name="Stamp_Station2" parent="Level" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.1297, 2.08411, 3.84115 )
 visible = false
 stamp_station_type = "green"
 
-[node name="Stamp_Station" parent="Level" instance=ExtResource( 20 )]
+[node name="Stamp_Station" parent="Level" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7242, 2.06104, -7.3966 )
 visible = false
 stamp_station_type = "blue"
 
-[node name="Stamp_Station3" parent="Level" instance=ExtResource( 20 )]
+[node name="Stamp_Station3" parent="Level" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.49048, 2.09859, -12.0258 )
 visible = false
 stamp_station_type = "yellow"
 
-[node name="Stamp_Station4" parent="Level" instance=ExtResource( 20 )]
+[node name="Stamp_Station4" parent="Level" instance=ExtResource( 22 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.36103, 1.99415, 3.72796 )
 visible = false
 stamp_station_type = "red"
@@ -340,7 +383,7 @@ stamp_station_type = "red"
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0153854, -1.19209e-07, -0.0104287 )
 visible = false
-script = ExtResource( 21 )
+script = ExtResource( 23 )
 
 [node name="Position3D" type="Position3D" parent="Level/Spawn_Points"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.277, 1.5, 0 )
@@ -354,19 +397,19 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.347, 1.5, 0 )
 [node name="Position3D4" type="Position3D" parent="Level/Spawn_Points"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3.891 )
 
-[node name="Wall" parent="Level" instance=ExtResource( 22 )]
+[node name="Wall" parent="Level" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.657, 2.33056, 1.03202 )
 visible = false
 
-[node name="Wall2" parent="Level" instance=ExtResource( 22 )]
+[node name="Wall2" parent="Level" instance=ExtResource( 24 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4.14286, 2.33056, 1.03202 )
 visible = false
 
-[node name="BoostZone" parent="Level" instance=ExtResource( 23 )]
+[node name="BoostZone" parent="Level" instance=ExtResource( 25 )]
 transform = Transform( 0.5, 0, 0, 0, 1, 8.57977e-15, 0, -1.06581e-14, 0.805, 10.9327, -1.19209e-07, -2.97005 )
 visible = false
 
-[node name="BoostZone2" parent="Level" instance=ExtResource( 23 )]
+[node name="BoostZone2" parent="Level" instance=ExtResource( 25 )]
 transform = Transform( 0.5, 0, 0, 0, -4.37114e-08, 0.4, 0, -1, -1.74846e-08, 10.6698, 2, 7.46334 )
 visible = false
 
@@ -375,10 +418,10 @@ editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0153854, -1.19209e-07, -0.0104287 )
 visible = false
 
-[node name="Heat_Area" parent="Level/Melt Level" instance=ExtResource( 24 )]
+[node name="Heat_Area" parent="Level/Melt Level" instance=ExtResource( 26 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98507, 0 )
 
-[node name="Cool_Area" parent="Level/Melt Level" instance=ExtResource( 25 )]
+[node name="Cool_Area" parent="Level/Melt Level" instance=ExtResource( 27 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10842, -3.61385 )
 
 [node name="Player" parent="Level" instance=ExtResource( 2 )]
@@ -391,5 +434,8 @@ transform = Transform( 0.777488, -0.473729, 0.413634, 0, 0.657713, 0.753268, -0.
 shadow_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/star_collect = SubResource( 13 )
+anims/star_collect = SubResource( 15 )
+
+[node name="Star" parent="." instance=ExtResource( 21 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 31.1104, -7.70136, 37.6748 )
 

@@ -1,7 +1,7 @@
 extends Area
 
 var speed_in_water = 0.5
-var speed_normal = 2
+var speed_normal = 3
 
 func _ready():
 	connect("area_entered", self, "player_area_entered")
@@ -9,12 +9,12 @@ func _ready():
 	
 func player_area_entered(area):
 	if area.has_method("add_score"):
-		if get_node("../Player/Player").spin:
-			get_node("../Player/Player").movement_speed = speed_normal
+		if get_node("../PlayerSceneRoot/Player").spin:
+			get_node("../PlayerSceneRoot/Player").movement_speed = speed_normal
 		else:
-			get_node("../Player/Player").movement_speed = speed_in_water
+			get_node("../PlayerSceneRoot/Player").movement_speed = speed_in_water
 
 func player_area_exited(area):
 	if area.has_method("add_score"):
-		get_node("../Player/Player").movement_speed = speed_normal
+		get_node("../PlayerSceneRoot/Player").movement_speed = speed_normal
 

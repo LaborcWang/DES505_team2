@@ -1,7 +1,7 @@
 extends ParticleCharacter
 
 
-var movement_speed = 2
+var movement_speed = 3
 var motion = Vector2()
 const ROTATION_INTERPOLATE_SPEED = 10
 const MOTION_INTERPOLATE_SPEED = 10
@@ -134,6 +134,7 @@ func spin_input_test(event):
 		spin_input_record.clear()
 		spin_input_size = spin_input_record.size()
 		spin = true
+		print("Spin!")
 	current_input = -1
 
 #Control the parapmeter of particle group

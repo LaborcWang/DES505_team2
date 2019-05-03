@@ -15,7 +15,7 @@ extents = Vector3( 26.1571, 0.620267, 26.0441 )
 [sub_resource type="CubeMesh" id=2]
 size = Vector3( 60, 8, 2 )
 
-[node name="Scene Root" index="0" instance=ExtResource( 1 )]
+[node name="Scene Root" instance=ExtResource( 1 )]
 
 [node name="StartPosition" type="Position3D" parent="." index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.18585, 1.10245, -20.7972 )
@@ -79,7 +79,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0151, 1.63305, -16.3421 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.0151, 2.17251, -14.5821 )
 
 [node name="Blockers" type="Spatial" parent="." index="5"]
-visible = false
 
 [node name="PrototypeMesh" type="MeshInstance" parent="Blockers" index="0"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.61372, 3.21617, -26.2295 )
