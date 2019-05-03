@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="DES505_Team2"
-run/main_scene="res://Final Level.tscn"
+run/main_scene="res://Main_Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

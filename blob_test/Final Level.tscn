@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Final Level.obj" type="PackedScene" id=1]
 [ext_resource path="res://level/Black Metal.material" type="Material" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://level/Grass.material" type="Material" id=7]
 [ext_resource path="res://level/Fence.material" type="Material" id=8]
 [ext_resource path="res://level/Water.material" type="Material" id=9]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=10]
 
 [node name="Scene Root" index="0" instance=ExtResource( 1 )]
 
@@ -132,7 +131,4 @@ material/113 = ExtResource( 4 )
 material/114 = ExtResource( 3 )
 material/115 = ExtResource( 5 )
 material/116 = ExtResource( 6 )
-
-[node name="PlayerSceneRoot" parent="MeshInstance" index="1" instance=ExtResource( 10 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.15176, -10.367, 21.3401 )
 

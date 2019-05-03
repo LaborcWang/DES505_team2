@@ -54,7 +54,7 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			mouse_visible = true
 			get_tree().paused = true
-			get_node("../Player/Player").movement_speed = 0
+			get_node("../PlayerSceneRoot/Player").movement_speed = 0
 			$Pause.show()
 			#$Pause/WindowDialog.popup(Rect2(420, 120, 200, 64))
 	if Input.is_key_pressed(KEY_ENTER):
